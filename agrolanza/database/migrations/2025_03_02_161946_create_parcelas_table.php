@@ -19,6 +19,9 @@ return new class extends Migration
             $table->unsignedInteger('superficie');
             $table->decimal('latitud', 10, 6);
             $table->decimal('longitud', 10, 6);
+
+            $table->string('ip_alta', 15)->nullable();
+            $table->string('ip_ult_mod', 15)->nullable();
             $table->timestamps();
         });
     }
