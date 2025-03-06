@@ -24,8 +24,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 0.5,
                 'plazo_seguridad' => 21,
                 'observaciones' => 'Aplicar en horas de baja insolación para evitar evaporación.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Roundup UltraPlus',
@@ -37,8 +38,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 4.0,
                 'plazo_seguridad' => 7,
                 'observaciones' => 'Evitar el contacto con cultivos deseados.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Aliette WG',
@@ -50,8 +52,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 3.0,
                 'plazo_seguridad' => 15,
                 'observaciones' => 'Recomendado para cultivos de vid y cítricos.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Decis Protech',
@@ -63,8 +66,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 0.3,
                 'plazo_seguridad' => 7,
                 'observaciones' => 'Eficaz contra lepidópteros y otros insectos.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Folicur WG',
@@ -76,8 +80,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 1.0,
                 'plazo_seguridad' => 14,
                 'observaciones' => 'Aplicar preventivamente para mejores resultados.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Karate Zeon',
@@ -89,8 +94,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 0.2,
                 'plazo_seguridad' => 14,
                 'observaciones' => 'Eficaz contra insectos masticadores y chupadores.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Ridomil Gold',
@@ -102,8 +108,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 2.5,
                 'plazo_seguridad' => 21,
                 'observaciones' => 'No aplicar en épocas de alta humedad.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Maton',
@@ -115,8 +122,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 1.5,
                 'plazo_seguridad' => 30,
                 'observaciones' => 'Evitar aplicar en cultivos de hoja ancha.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Ortiva',
@@ -128,8 +136,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 1.0,
                 'plazo_seguridad' => 3,
                 'observaciones' => 'Recomendado para cultivos de tomate y pimiento.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ],
             [
                 'nombre' => 'Pirimor G',
@@ -141,8 +150,9 @@ class FitosanitariosSeeder extends Seeder
                 'dosis_maxima' => 0.5,
                 'plazo_seguridad' => 7,
                 'observaciones' => 'No afecta a insectos beneficiosos.',
-                'ip_alta' => null,
-                'ip_ult_mod' => null
+                'ip_alta' => '192.168.1.104',
+                'ip_ult_mod' => '192.168.1.104',
+                'created_at' => now(),
             ]
         ]);
     }

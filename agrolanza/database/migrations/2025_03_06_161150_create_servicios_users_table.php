@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parcelas', function (Blueprint $table) {
+        Schema::create('servicios_users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_cliente');
-            $table->char('referencia_catastral', 20)->unique();
-            $table->unsignedInteger('superficie');
-            $table->decimal('latitud', 10, 6);
-            $table->decimal('longitud', 10, 6);
+            $table->unsignedBigInteger('id_servicio');
+            $table->unsignedBigInteger('id_user');
 
             $table->string('ip_alta', 15)->nullable();
             $table->string('ip_ult_mod', 15)->nullable();
+
             $table->timestamps();
 
-            $table->foreign('id_cliente')->references('id')->on('clientes');
+            $table->foreign('id_servicio')->references('id')->on('servicios')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parcelas');
+        Schema::dropIfExists('servicios_users');
     }
 };

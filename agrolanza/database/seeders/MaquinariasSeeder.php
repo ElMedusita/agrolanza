@@ -22,7 +22,6 @@ class MaquinariasSeeder extends Seeder
                 'ip_alta' => '192.168.1.100',
                 'ip_ult_mod' => '192.168.1.100',
                 'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'numero_serie' => 'LZT987654321098',
@@ -32,7 +31,6 @@ class MaquinariasSeeder extends Seeder
                 'ip_alta' => '192.168.1.101',
                 'ip_ult_mod' => '192.168.1.101',
                 'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'numero_serie' => 'LZT456789012345',
@@ -42,7 +40,6 @@ class MaquinariasSeeder extends Seeder
                 'ip_alta' => '192.168.1.102',
                 'ip_ult_mod' => '192.168.1.102',
                 'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'numero_serie' => 'LZT789012345678',
@@ -52,7 +49,6 @@ class MaquinariasSeeder extends Seeder
                 'ip_alta' => '192.168.1.103',
                 'ip_ult_mod' => '192.168.1.103',
                 'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'numero_serie' => 'LZT012345678901',
@@ -62,7 +58,6 @@ class MaquinariasSeeder extends Seeder
                 'ip_alta' => '192.168.1.104',
                 'ip_ult_mod' => '192.168.1.104',
                 'created_at' => now(),
-                'updated_at' => now(),
             ]
 
         ]);

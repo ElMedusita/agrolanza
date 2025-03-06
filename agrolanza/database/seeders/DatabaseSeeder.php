@@ -19,5 +19,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ParcelasSeeder::class);
         $this->call(MaquinariasSeeder::class);
         $this->call(FitosanitariosSeeder::class);
-    }
+        $this->call(ServiciosSeeder::class);
+        $this->call(ServiciosUsersSeeder::class);
+        $this->call(ServiciosMaquinariasSeeder::class);
+        $this->call(ServiciosFitosanitariosSeeder::class);
+        }
 }

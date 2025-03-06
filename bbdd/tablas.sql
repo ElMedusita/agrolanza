@@ -95,11 +95,15 @@ DROP TABLE servicios;
 
 CREATE TABLE servicios (
     id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    tipo                char(3) NOT NULL,
+    tipo_servicio       char(2) NOT NULL,
     descripcion         VARCHAR(60),
     metodo_pago         char(2) NOT NULL,
     fecha_servicio      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    presupuesto         decimal(7,2),
+    hora_servicio       TIME NOT NULL,
+    presupuesto         decimal(7,2) NOT NULL,
+    forma_pago          char(2) NOT NULL,
+    estado            char(1) NOT NULL,
+    
     id_cliente          INT NOT NULL,
     
 
