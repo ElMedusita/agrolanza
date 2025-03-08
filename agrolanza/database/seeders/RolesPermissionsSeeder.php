@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use App\Models\User;
 
 class RolesPermissionsSeeder extends Seeder
 {
@@ -105,6 +106,11 @@ class RolesPermissionsSeeder extends Seeder
             $listar_parcelas, $listar_parcela,
             $listar_fitosanitarios, $listar_fitosanitario
         );
+
+        $admin = User::where('email', 'alexisgilcabrera@gmail.com')->first();
+        $admin?->assignRole('admin');
+        
+
     }
 
 }
