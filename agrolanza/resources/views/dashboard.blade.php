@@ -8,6 +8,8 @@
 
 @section('content')
     <p>Welcome to this beautiful admin panel.</p>
+    <img src="{{ asset('img/fondo_inicio.jpg') }}" alt="Descripción"  class="img-fluid" width="100%">
+
 @stop
 
 @section('css')
