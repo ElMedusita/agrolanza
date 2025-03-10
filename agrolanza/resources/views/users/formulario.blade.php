@@ -42,11 +42,51 @@
             @error('name') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
         <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos</label>
+            <input {{ $disabled }} type="text" name="apellidos" class="form-control" id="apellidos" value="{{ old('apellidos',$user->apellidos)}}" placeholder="Apellidos">
+            @error('apellidos') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input {{ $disabled }}  type="text" name="email" class="form-control" id="email" value="{{ old('email',$user->email)}}" placeholder="Email">
             @error('email') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
-        <div class="mb-3 form-check">
+        <div class="mb-3">
+            <label for="telefono" class="form-label">Teléfono</label>
+            <input {{ $disabled }}  type="text" name="telefono" class="form-control" id="telefono" value="{{ old('telefono',$user->telefono)}}" placeholder="Teléfono">
+            @error('telefono') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input {{ $disabled }}  type="text" name="direccion" class="form-control" id="direccion" value="{{ old('direccion',$user->direccion)}}" placeholder="Dirección">
+            @error('direccion') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
+            <label for="localidad" class="form-label">Localidad</label>
+            <input {{ $disabled }}  type="text" name="localidad" class="form-control" id="localidad" value="{{ old('localidad',$user->localidad)}}" placeholder="Localidad">
+            @error('localidad') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
+            <label for="iban" class="form-label">IBAN</label>
+            <input {{ $disabled }}  type="text" name="iban" class="form-control" id="iban" value="{{ old('iban',$user->iban)}}" placeholder="IBAN">
+            @error('iban') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
+            <label for="fecha_nacimiento" class="form-label">Fecha nacimiento</label>
+            <input {{ $disabled }}  type="date" name="fecha_nacimiento" class="form-control" id="fecha_nacimiento" value="{{ old('fecha_nacimiento',$user->fecha_nacimiento)}}" placeholder="Fecha nacimiento">
+            @error('fecha_nacimiento') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
+            <label for="fecha_comienzo" class="form-label">Fecha comienzo</label>
+            <input {{ $disabled }}  type="date" name="fecha_comienzo" class="form-control" id="fecha_comienzo" value="{{ old('fecha_comienzo',$user->fecha_comienzo)}}" placeholder="Fecha comienzo">
+            @error('fecha_comienzo') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
+            <label for="fecha_fin" class="form-label">Fecha fin</label>
+            <input {{ $disabled }}  type="date" name="fecha_fin" class="form-control" id="fecha_fin" value="{{ old('fecha_fin',$user->fecha_fin)}}" placeholder="Fecha fin">
+            @error('fecha_fin') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3 form-check"> <!-- Modificar para agregar los demás roles -->
             <input {{ $disabled }} type="checkbox" name="is_editor" id="is_editor" class="form-check-input" 
                 {{ old('is_editor', $user->hasRole('editor')) ? 'checked' : '' }}>
             <label for="is_editor" class="form-check-label">Es Editor</label>

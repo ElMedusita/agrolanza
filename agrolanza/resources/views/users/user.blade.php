@@ -9,16 +9,13 @@
 <div class="table-responsive">
     <table  class="table">
         <tr>
-            @role('admin')
-            <td>#</td>
-            @endrole
-            @role('editor')
-            <td>#</td>
-            @endrole
             <td>Nombre</td>
             <td>Apellidos</td>
+            <td>Fecha nacimiento</td>
             <td>Email</td>
-            <td>Contraseña</td>
+            <td>Teléfono</td>
+            <td>Estado laboral</td>
+            <td></td>
         </tr>
 
     
@@ -26,6 +23,26 @@
         
 
     <tr>
+        <td>{{ $user->name }}</td>
+        <td>{{ $user->apellidos}}</td> 
+        <td>{{ $user->fecha_nacimiento }}</td>
+        <td>{{ $user->email }}</td> 
+        <td>{{ $user->telefono }}</td>
+        <td>
+            @php
+                $fecha_actual =  \Carbon\Carbon::now();
+
+                if ((($fecha_actual>=$user->fecha_inicio) && ($fecha_actual <=$user->fecha_fin)) || (($fecha_actual>=$user->fecha_inicio) && (empty($user->fecha_fin))))
+                {
+                    $estado_trabajo = "Activo";
+                }
+                else
+                {
+                    $estado_trabajo = "Inactivo";
+                }
+            @endphp
+            {{ $estado_trabajo }}
+        </td>
         @role('admin')
         <td>
             <div>
@@ -43,12 +60,6 @@
             </div>
         </td>
         @endrole
-
-        <td>{{ $user->name }}</td>
-        <td>{{ $user->apellidos}}</td> 
-        <td>{{ $user->email }}</td> 
-        <td>**********</td>
-</tr>
 
     @endforeach
 

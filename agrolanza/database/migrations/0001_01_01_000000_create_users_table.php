@@ -19,10 +19,13 @@ return new class extends Migration
             $table->string('apellidos', 60);
             $table->string('email', 40)->unique();
             $table->char('telefono', 12);
+            $table->string('direccion', 150);
+            $table->string('localidad', 50);
             $table->char('codigo_postal', 5);
             $table->char('iban', 24);
-            $table->timestamp('fecha_nacimiento')->nullable();
-            
+            $table->date('fecha_nacimiento');
+            $table->date('fecha_comienzo');
+            $table->date('fecha_fin')->nullable();
             $table->string('password');
             $table->rememberToken();
         
