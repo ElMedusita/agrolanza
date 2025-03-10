@@ -50,72 +50,60 @@ class UserController extends Controller
     }
 
     function almacenar(Request $request)
-    {
-        if ($request->oper == 'supr')
-        {
-
-            $user = User::find($request->id);
-            $user->delete();
-
-            $salida = redirect()->route('users.listado');
-        }
-        else
-        {
-            
-            $validatedData = $request->validate([
-                'name'              => 'required|string|max:255',
-                'email'             => 'required|string|max:255',
-                'password'          => 'required|string|max:255',
-                'confirm_password'  => 'required|string|max:255|same:password',
-
-            ], [
-                'name.required' => 'El nombre es obligatorio.',
-                'name.string'   => 'Debe ser de tipo cadena de texto.',
-                'name.max'      => 'Máximo 255 caracteres',
-
-                'email.required' => 'El email es obligatorio.',
-                'email.string'   => 'Debe ser de tipo cadena de texto.',
-                'email.max'      => 'Máximo 255 caracteres',
-                'email.unique'   => 'El email ya existe.',
-
-                'password.required' => 'La contraseña es obligatoria.',
-                'password.string'   => 'Debe ser de tipo cadena de texto.',
-                'password.max'      => 'Máximo 255 caracteres',
-
-                'confirm_password.required' => 'La confirmación de la contraseña es obligatoria.',
-                'confirm_password.string'   => 'Debe ser de tipo cadena de texto.',
-                'confirm_password.max'      => 'Máximo 255 caracteres',
-                'confirm_password.same'     => 'La confirmación de la contraseña debe coincidir con la contraseña.',
-                
-            ]);
-
-
-
-            $user = empty($request->id)? new User() : User::find($request->id);
-            
-            $user->name      = $request->name;
-            $user->email       = $request->email;
-            $user->password = "$request->password";
-
-            $user->save();
-
-            if ($request->has('is_editor'))
-            {
-                $user->assignRole('editor');
-            }
-            else
-            {
-                $user->removeRole('editor');
-            }
-
-            $salida = redirect()->route('users.alta')->with([
-                    'success'  => 'Usuario insertado correctamente.'
-                    ,'formData' => $user
-                ]
-            );
-            
-        }
-
-        return $salida;
+{
+    if ($request->oper == 'supr') {
+        $user = User::find($request->id);
+        $user->delete();
+        return redirect()->route('users.listado');
     }
+
+    // Validaciones
+    $rules = [
+        'name'  => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users,email,' . $request->id,
+    ];
+
+    if (empty($request->id)) {
+        $rules['password'] = 'required';
+    } elseif (!empty($request->password)) { // Si se proporciona una nueva contraseña en edición
+        $rules['password'] = 'string';
+    }
+
+    $validatedData = $request->validate($rules);
+
+    $user = empty($request->id) ? new User() : User::find($request->id);
+
+    $user->name      = $request->name;
+    $user->email     = $request->email;
+
+    if (!empty($request->password)) {
+        $user->password = bcrypt($request->password);
+    }
+
+    $user->identificacion    = $request->identificacion;
+    $user->apellidos         = $request->apellidos;
+    $user->telefono          = $request->telefono;
+    $user->direccion         = $request->direccion;
+    $user->localidad         = $request->localidad;
+    $user->codigo_postal     = $request->codigo_postal;
+    $user->iban              = $request->iban;
+    $user->fecha_nacimiento  = $request->fecha_nacimiento;
+    $user->fecha_comienzo    = $request->fecha_comienzo;
+    $user->fecha_fin         = $request->fecha_fin;
+
+    $user->save();
+
+    // Manejar roles
+    /* if ($request->has('is_editor')) {
+        $user->assignRole('editor');
+    } else {
+        $user->removeRole('editor');
+    } */
+
+    return redirect()->route('users.alta')->with([
+        'success'  => 'Usuario guardado correctamente.',
+        'formData' => $user
+    ]);
+}
+
 }

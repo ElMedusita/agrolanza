@@ -9,13 +9,13 @@
 <div class="table-responsive">
     <table  class="table">
         <tr>
-            <td>Nombre</td>
-            <td>Apellidos</td>
-            <td>Fecha nacimiento</td>
-            <td>Email</td>
-            <td>Teléfono</td>
-            <td>Estado laboral</td>
-            <td></td>
+            <td><b>Nombre</b></td>
+            <td><b>Apellidos</b></td>
+            <td><b>Fecha nacimiento</b></td>
+            <td><b>Email</b></td>
+            <td><b>Teléfono</b></td>
+            <td><b>Estado laboral</b></td>
+            <td><b>Acciones</b></td>
         </tr>
 
     

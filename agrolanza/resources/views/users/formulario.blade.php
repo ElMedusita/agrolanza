@@ -37,6 +37,11 @@
         <input type="hidden" name="oper" value="{{ $oper }}" />
         <input type="hidden" name="id" value="{{ $user->id }}" />
         <div class="mb-3">
+            <label for="identificacion" class="form-label">Identificación</label>
+            <input {{ $disabled }} type="text" name="identificacion" class="form-control" id="identificacion" value="{{ old('identificacion',$user->identificacion)}}" placeholder="Identificación">
+            @error('identificacion') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
             <input {{ $disabled }} type="text" name="name" class="form-control" id="name" value="{{ old('name',$user->name)}}" placeholder="Nombre">
             @error('name') <p style="color: red;">{{ $message }}</p> @enderror
@@ -67,6 +72,11 @@
             @error('localidad') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
         <div class="mb-3">
+            <label for="codigo_postal" class="form-label">Código postal</label>
+            <input {{ $disabled }}  type="text" name="codigo_postal" class="form-control" id="codigo_postal" value="{{ old('codigo_postal',$user->codigo_postal)}}" placeholder="Código postal">
+            @error('codigo_postal') <p style="color: red;">{{ $message }}</p> @enderror
+        </div>
+        <div class="mb-3">
             <label for="iban" class="form-label">IBAN</label>
             <input {{ $disabled }}  type="text" name="iban" class="form-control" id="iban" value="{{ old('iban',$user->iban)}}" placeholder="IBAN">
             @error('iban') <p style="color: red;">{{ $message }}</p> @enderror
@@ -86,13 +96,6 @@
             <input {{ $disabled }}  type="date" name="fecha_fin" class="form-control" id="fecha_fin" value="{{ old('fecha_fin',$user->fecha_fin)}}" placeholder="Fecha fin">
             @error('fecha_fin') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
-        <div class="mb-3 form-check"> <!-- Modificar para agregar los demás roles -->
-            <input {{ $disabled }} type="checkbox" name="is_editor" id="is_editor" class="form-check-input" 
-                {{ old('is_editor', $user->hasRole('editor')) ? 'checked' : '' }}>
-            <label for="is_editor" class="form-check-label">Es Editor</label>
-            @error('is_editor') <p class="text-danger">{{ $message }}</p> @enderror
-        </div>
-
         @if ($oper != 'cons' && $oper != 'supr' && $oper != 'modi')
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
@@ -105,6 +108,7 @@
             @error('confirm_password') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
         @endif
+
 
       @php
 

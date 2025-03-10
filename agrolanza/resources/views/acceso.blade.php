@@ -1,1 +1,0 @@
-<h1>Zona de admins</h1>
