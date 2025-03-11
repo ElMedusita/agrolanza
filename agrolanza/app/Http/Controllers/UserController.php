@@ -50,60 +50,60 @@ class UserController extends Controller
     }
 
     function almacenar(Request $request)
-{
-    if ($request->oper == 'supr') {
-        $user = User::find($request->id);
-        $user->delete();
-        return redirect()->route('users.listado');
+    {
+        if ($request->oper == 'supr') {
+            $user = User::find($request->id);
+            $user->delete();
+            return redirect()->route('users.listado');
+        }
+
+        // Validaciones
+        $rules = [
+            'name'  => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $request->id,
+        ];
+
+        if (empty($request->id)) {
+            $rules['password'] = 'required';
+        } elseif (!empty($request->password)) { // Si se proporciona una nueva contraseña en edición
+            $rules['password'] = 'string';
+        }
+
+        $validatedData = $request->validate($rules);
+
+        $user = empty($request->id) ? new User() : User::find($request->id);
+
+        $user->name      = $request->name;
+        $user->email     = $request->email;
+
+        if (!empty($request->password)) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->identificacion    = $request->identificacion;
+        $user->apellidos         = $request->apellidos;
+        $user->telefono          = $request->telefono;
+        $user->direccion         = $request->direccion;
+        $user->localidad         = $request->localidad;
+        $user->codigo_postal     = $request->codigo_postal;
+        $user->iban              = $request->iban;
+        $user->fecha_nacimiento  = $request->fecha_nacimiento;
+        $user->fecha_comienzo    = $request->fecha_comienzo;
+        $user->fecha_fin         = $request->fecha_fin;
+
+        $user->save();
+
+        // Manejar roles
+        /* if ($request->has('is_editor')) {
+            $user->assignRole('editor');
+        } else {
+            $user->removeRole('editor');
+        } */
+
+        return redirect()->route('users.alta')->with([
+            'success'  => 'Usuario guardado correctamente.',
+            'formData' => $user
+        ]);
     }
-
-    // Validaciones
-    $rules = [
-        'name'  => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users,email,' . $request->id,
-    ];
-
-    if (empty($request->id)) {
-        $rules['password'] = 'required';
-    } elseif (!empty($request->password)) { // Si se proporciona una nueva contraseña en edición
-        $rules['password'] = 'string';
-    }
-
-    $validatedData = $request->validate($rules);
-
-    $user = empty($request->id) ? new User() : User::find($request->id);
-
-    $user->name      = $request->name;
-    $user->email     = $request->email;
-
-    if (!empty($request->password)) {
-        $user->password = bcrypt($request->password);
-    }
-
-    $user->identificacion    = $request->identificacion;
-    $user->apellidos         = $request->apellidos;
-    $user->telefono          = $request->telefono;
-    $user->direccion         = $request->direccion;
-    $user->localidad         = $request->localidad;
-    $user->codigo_postal     = $request->codigo_postal;
-    $user->iban              = $request->iban;
-    $user->fecha_nacimiento  = $request->fecha_nacimiento;
-    $user->fecha_comienzo    = $request->fecha_comienzo;
-    $user->fecha_fin         = $request->fecha_fin;
-
-    $user->save();
-
-    // Manejar roles
-    /* if ($request->has('is_editor')) {
-        $user->assignRole('editor');
-    } else {
-        $user->removeRole('editor');
-    } */
-
-    return redirect()->route('users.alta')->with([
-        'success'  => 'Usuario guardado correctamente.',
-        'formData' => $user
-    ]);
-}
 
 }
