@@ -337,6 +337,11 @@ return [
             'url' => 'maquinarias/',
             'icon' => 'fas fa-fw fa-users',
         ],
+        [
+            'text' => 'fitosanitarios',
+            'url' => 'fitosanitarios/',
+            'icon' => 'fas fa-fw fa-users',
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

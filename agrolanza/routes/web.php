@@ -6,6 +6,8 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use App\Http\Controllers\MaquinariaController;
 use App\Models\Maquinaria;
+use App\Http\Controllers\FitosanitarioController;
+use App\Models\Fitosanitario;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,12 +30,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
 
-    Route::get('/users'                , [UserController::class, 'listado'])->middleware(['auth', 'verified'])->name('users.listado');
-    Route::get('/user/{id}'            , [UserController::class, 'mostrar'])->middleware(['auth', 'verified'])->name('users.mostrar');
+    Route::get('/users'                , [UserController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('users.listado');
+    Route::get('/user/{id}'            , [UserController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('users.mostrar');
     Route::get('/user/actualizar/{id}' , [UserController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('users.actualizar');
-    Route::get('/user/eliminar/{id}'   , [UserController::class, 'eliminar'])->middleware(['auth', 'verified'])->name('users.eliminar');
-    Route::get('/users/nuevo'          , [UserController::class, 'alta'])->middleware(['auth', 'verified'])->name('users.alta');
-    Route::post('/users/nuevo'         , [UserController::class, 'almacenar'])->middleware(['auth', 'verified'])->name('users.almacenar');
+    Route::get('/user/eliminar/{id}'   , [UserController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('users.eliminar');
+    Route::get('/users/nuevo'          , [UserController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('users.alta');
+    Route::post('/users/nuevo'         , [UserController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('users.almacenar');
 
 });
 
@@ -44,12 +46,28 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
 Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
 
-    Route::get('/maquinarias'                , [MaquinariaController::class, 'listado'])->middleware(['auth', 'verified'])->name('maquinarias.listado');
-    Route::get('/maquinaria/{id}'            , [MaquinariaController::class, 'mostrar'])->middleware(['auth', 'verified'])->name('maquinarias.mostrar');
+    Route::get('/maquinarias'                , [MaquinariaController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('maquinarias.listado');
+    Route::get('/maquinaria/{id}'            , [MaquinariaController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('maquinarias.mostrar');
     Route::get('/maquinaria/actualizar/{id}' , [MaquinariaController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('maquinarias.actualizar');
-    Route::get('/maquinaria/eliminar/{id}'   , [MaquinariaController::class, 'eliminar'])->middleware(['auth', 'verified'])->name('maquinarias.eliminar');
-    Route::get('/maquinarias/nuevo'          , [MaquinariaController::class, 'alta'])->middleware(['auth', 'verified'])->name('maquinarias.alta');
-    Route::post('/maquinarias/nuevo'         , [MaquinariaController::class, 'almacenar'])->middleware(['auth', 'verified'])->name('maquinarias.almacenar');
+    Route::get('/maquinaria/eliminar/{id}'   , [MaquinariaController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('maquinarias.eliminar');
+    Route::get('/maquinarias/nuevo'          , [MaquinariaController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('maquinarias.alta');
+    Route::post('/maquinarias/nuevo'         , [MaquinariaController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('maquinarias.almacenar');
+
+});
+
+
+  ####################
+ ## Fitosanitarios ##
+####################
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
+
+    Route::get('/fitosanitarios'                , [FitosanitarioController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('fitosanitarios.listado');
+    Route::get('/fitosanitario/{id}'            , [FitosanitarioController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('fitosanitarios.mostrar');
+    Route::get('/fitosanitario/actualizar/{id}' , [FitosanitarioController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('fitosanitarios.actualizar');
+    Route::get('/fitosanitario/eliminar/{id}'   , [FitosanitarioController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('fitosanitarios.eliminar');
+    Route::get('/fitosanitarios/nuevo'          , [FitosanitarioController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('fitosanitarios.alta');
+    Route::post('/fitosanitarios/nuevo'         , [FitosanitarioController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('fitosanitarios.almacenar');
 
 });
 

@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('nombre', 29);
             $table->string('marca', 29);
+            $table->string('numero_registro', 29);
             $table->char('tipo', 2);
+            $table->char('estado', 2);
             $table->string('descripcion', 200);
             $table->string('entidad_vendedora', 40);
             $table->string('materia_activa', 30);
+            $table->decimal('cantidad_materia_activa', 5, 2);
             $table->decimal('dosis_maxima', 5, 2);
             $table->integer('plazo_seguridad');
             $table->string('observaciones', 200)->nullable();
