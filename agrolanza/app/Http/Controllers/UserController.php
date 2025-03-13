@@ -90,6 +90,7 @@ class UserController extends Controller
         $user->fecha_nacimiento  = $request->fecha_nacimiento;
         $user->fecha_comienzo    = $request->fecha_comienzo;
         $user->fecha_fin         = $request->fecha_fin;
+        $user->ip_alta = $request->ip();
 
         $user->save();
 

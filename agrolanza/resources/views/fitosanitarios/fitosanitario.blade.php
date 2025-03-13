@@ -10,8 +10,8 @@
     <table  class="table">
         <tr>
             <td><b>Nombre</b></td>
-            <td><b>Marca</b></td>
             <td><b>Tipo</b></td>
+            <td><b>Materia activa</b></td>
             <td><b>Dosis máxima</b></td>
             <td><b>Plazo de seguridad</b></td>
             <td><b></b></td>
@@ -21,9 +21,22 @@
         
     <tr>
         <td>{{ $fitosanitario->nombre }}</td>
-        <td>{{ $fitosanitario->marca }}</td>
         <td>{{ $TIPOS[$fitosanitario->tipo] }}</td> 
-        <td>{{ $fitosanitario->dosis_maxima }}</td> 
+        @php
+            $medida_ma = 'g';
+            if ($fitosanitario->estado == 'VV')
+                $medida_ma = 'cm³';
+
+            $medida_fs = 'cm³';
+            if ($fitosanitario->estado == 'PP')
+                $medida_fs = 'g';
+
+            $unidad_fs = 'l';
+            if ($medida_fs == 'g')
+                $unidad_fs = 'kg';
+        @endphp
+        <td>{{ $fitosanitario->materia_activa }} | {{ $fitosanitario->cantidad_materia_activa}} {{ $medida_ma }} / {{ $unidad_fs }}</td>
+        <td>{{ $fitosanitario->dosis_maxima }} {{ $medida_fs }} / l</td> 
         <td>{{ $fitosanitario->plazo_seguridad }} días</td> 
 
         @role(['admin', 'auxiliar'])

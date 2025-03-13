@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Maquinaria;
-use App\Models\User;
-use App\Models\Role;
 
 class MaquinariaController extends Controller
 {
@@ -81,6 +79,7 @@ class MaquinariaController extends Controller
             $maquinaria->matricula    = $request->matricula;
             $maquinaria->marca        = $request->marca;
             $maquinaria->descripcion  = $request->descripcion;
+            $maquinaria->ip_alta = $request->ip();
 
             $maquinaria->save();
 

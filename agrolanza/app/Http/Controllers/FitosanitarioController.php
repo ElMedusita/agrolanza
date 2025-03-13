@@ -146,6 +146,8 @@ class FitosanitarioController extends Controller
             $fitosanitario->dosis_maxima      = $request->dosis_maxima;
             $fitosanitario->plazo_seguridad   = $request->plazo_seguridad;
             $fitosanitario->observaciones     = $request->observaciones;
+            $fitosanitario->ip_alta = $request->ip();
+
 
 
 

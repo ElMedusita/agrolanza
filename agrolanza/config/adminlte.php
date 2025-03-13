@@ -333,6 +333,11 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
+            'text' => 'clientes',
+            'url' => 'clientes/',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
             'text' => 'maquinarias',
             'url' => 'maquinarias/',
             'icon' => 'fas fa-fw fa-users',

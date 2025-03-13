@@ -8,6 +8,8 @@ use App\Http\Controllers\MaquinariaController;
 use App\Models\Maquinaria;
 use App\Http\Controllers\FitosanitarioController;
 use App\Models\Fitosanitario;
+use App\Http\Controllers\ClienteController;
+use App\Models\Cliente;
 
 Route::get('/', function () {
     return view('welcome');
@@ -68,6 +70,22 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/fitosanitario/eliminar/{id}'   , [FitosanitarioController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('fitosanitarios.eliminar');
     Route::get('/fitosanitarios/nuevo'          , [FitosanitarioController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('fitosanitarios.alta');
     Route::post('/fitosanitarios/nuevo'         , [FitosanitarioController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('fitosanitarios.almacenar');
+
+});
+
+
+  ##############
+ ## Clientes ##
+##############
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
+
+    Route::get('/clientes'                , [ClienteController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('clientes.listado');
+    Route::get('/cliente/{id}'            , [ClienteController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('clientes.mostrar');
+    Route::get('/cliente/actualizar/{id}' , [ClienteController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('clientes.actualizar');
+    Route::get('/cliente/eliminar/{id}'   , [ClienteController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('clientes.eliminar');
+    Route::get('/clientes/nuevo'          , [ClienteController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('clientes.alta');
+    Route::post('/clientes/nuevo'         , [ClienteController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('clientes.almacenar');
 
 });
 
