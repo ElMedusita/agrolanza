@@ -338,6 +338,11 @@ return [
             'icon' => 'fas fa-fw fa-users',
         ],
         [
+            'text' => 'parcelas',
+            'url' => 'parcelas/',
+            'icon' => 'fas fa-fw fa-users',
+        ],
+        [
             'text' => 'maquinarias',
             'url' => 'maquinarias/',
             'icon' => 'fas fa-fw fa-users',

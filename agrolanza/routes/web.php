@@ -10,6 +10,8 @@ use App\Http\Controllers\FitosanitarioController;
 use App\Models\Fitosanitario;
 use App\Http\Controllers\ClienteController;
 use App\Models\Cliente;
+use App\Http\Controllers\ParcelaController;
+use App\Models\Parcela;
 
 Route::get('/', function () {
     return view('welcome');
@@ -86,6 +88,22 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/cliente/eliminar/{id}'   , [ClienteController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('clientes.eliminar');
     Route::get('/clientes/nuevo'          , [ClienteController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('clientes.alta');
     Route::post('/clientes/nuevo'         , [ClienteController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('clientes.almacenar');
+
+});
+
+
+  ##############
+ ## Parcelas ##
+##############
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
+
+    Route::get('/parcelas'                , [ParcelaController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('parcelas.listado');
+    Route::get('/parcela/{id}'            , [ParcelaController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('parcelas.mostrar');
+    Route::get('/parcela/actualizar/{id}' , [ParcelaController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('parcelas.actualizar');
+    Route::get('/parcela/eliminar/{id}'   , [ParcelaController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('parcelas.eliminar');
+    Route::get('/parcelas/nuevo'          , [ParcelaController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('parcelas.alta');
+    Route::post('/parcelas/nuevo'         , [ParcelaController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('parcelas.almacenar');
 
 });
 
