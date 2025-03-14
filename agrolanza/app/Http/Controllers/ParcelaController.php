@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Parcela;
+use App\Models\Cliente;
 
 class ParcelaController extends Controller
 {
@@ -17,9 +18,10 @@ class ParcelaController extends Controller
 
     function formulario($oper='', $id='')
     {
-        $parcela = empty($id)? new Parcela() : Parcela::find($id);
+        $parcela = empty($id) ? new Parcela() : Parcela::find($id);
+        $clientes = Cliente::all();
 
-        return view('parcelas.formulario',compact('parcela','oper'));
+        return view('parcelas.formulario', compact('parcela', 'oper', 'clientes'));
     }
 
     function mostrar($id)
@@ -55,14 +57,13 @@ class ParcelaController extends Controller
         else
         {
             $validatedData = $request->validate([
-                'id_cliente'   => 'required|integer',
+                'id_cliente'   => 'required',
                 'referencia_catastral' => 'required|max:100',
                 'superficie'          => 'required|integer',
                 'latitud'    => 'required|numeric',
                 'longitud'    => 'required|numeric',
             ], [
-                'id_cliente.required' => 'El ID de cliente es obligatorio',
-                'id_cliente.max'      => 'Máximo 100 caracteres',
+                'id_cliente.required' => 'El cliente es obligatorio',
 
                 'referencia_catastral.required' => 'La referencia catastral es obligatoria',
                 'referencia_catastral.max'      => 'Máximo 100 caracteres',
