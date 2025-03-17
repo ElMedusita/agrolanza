@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Fitosanitario extends Model
 {
+     protected $guarded = ['id'];
+
     const TIPOS = [
         'HE' => 'Herbicida',
         'IN' => 'Insecticida',
@@ -20,4 +22,10 @@ class Fitosanitario extends Model
         'PP' => 'Sólido - Sólido',
         'VV' => 'Líquido - Líquido'
    ];
+
+   public function servicios()
+    {
+        return $this->belongsToMany(Servicio::class);
+    }
+    
 }
