@@ -12,6 +12,8 @@ use App\Http\Controllers\ClienteController;
 use App\Models\Cliente;
 use App\Http\Controllers\ParcelaController;
 use App\Models\Parcela;
+use App\Http\Controllers\ServicioController;
+use App\Models\Servicio;
 
 Route::get('/', function () {
     return view('welcome');
@@ -104,6 +106,22 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/parcela/eliminar/{id}'   , [ParcelaController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('parcelas.eliminar');
     Route::get('/parcelas/nuevo'          , [ParcelaController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('parcelas.alta');
     Route::post('/parcelas/nuevo'         , [ParcelaController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('parcelas.almacenar');
+
+});
+
+
+  ###############
+ ## Servicios ##
+###############
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
+
+    Route::get('/servicios'                , [ServicioController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('servicios.listado');
+    Route::get('/servicio/{id}'            , [ServicioController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('servicios.mostrar');
+    Route::get('/servicio/actualizar/{id}' , [ServicioController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('servicios.actualizar');
+    Route::get('/servicio/eliminar/{id}'   , [ServicioController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('servicios.eliminar');
+    Route::get('/servicios/nuevo'          , [ServicioController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('servicios.alta');
+    Route::post('/servicios/nuevo'         , [ServicioController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('servicios.almacenar');
 
 });
 

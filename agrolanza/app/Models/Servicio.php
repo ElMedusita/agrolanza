@@ -8,6 +8,26 @@ class Servicio extends Model
 {
     protected $guarded = ['id'];
 
+    const TIPOS_SERVICIO = [
+        'CP' => 'Control de plagas',
+        'CM' => 'Control de maleza',
+        'SC' => 'Sembrado por cazolejas',
+        'SS' => 'Sembrado por surcos',
+        'CF' => 'Cosecha de frutos rastreros',
+        'RF' => 'Recolecta de frutos arbóreos',
+   ];
+
+   const METODOS_PAGO = [
+        'EF' => 'Efectivo',
+        'TA' => 'Tarjeta',
+        'TR' => 'Transferencia'
+   ];
+
+   const ESTADOS = [
+    'P' => 'Pagado',
+    'N' => 'No pagado',
+   ];
+
     public function parcela()
     {
         return $this->belongsTo(Parcela::class, 'id_parcela');
@@ -15,16 +35,16 @@ class Servicio extends Model
 
     public function fitosanitarios()
     {
-        return $this->belongsTo(Fitosanitario::class);
+        return $this->belongsToMany(Fitosanitario::class);
     }
 
     public function maquinarias()
     {
-        return $this->belongsTo(Maquinaria::class);
+        return $this->belongsToMany(Maquinaria::class);
     }
 
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class);
     }
 }

@@ -302,7 +302,7 @@ return [
         // Navbar items:
         [
             'type' => 'navbar-search',
-            'text' => 'search',
+            'text' => 'Buscar',
             'topnav_right' => true,
         ],
         [
@@ -313,7 +313,7 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Buscar',
         ],
         [
             'text' => 'blog',
@@ -321,49 +321,47 @@ return [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
-            'icon' => 'far fa-fw fa-file',
-            'label' => 4,
-            'label_color' => 'success',
-        ],
-        [
-            'text' => 'users',
+            'text' => 'Empleados',
             'url' => 'users/',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'clientes',
+            'text' => 'Clientes',
             'url' => 'clientes/',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-user-friends',
         ],
         [
-            'text' => 'parcelas',
+            'text' => 'Parcelas',
             'url' => 'parcelas/',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-map-marker-alt',
         ],
         [
-            'text' => 'maquinarias',
+            'text' => 'Servicios',
+            'url' => 'servicios/',
+            'icon' => 'fas fa-fw fa-tools',
+        ],
+        [
+            'text' => 'Maquinarias',
             'url' => 'maquinarias/',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-cogs',
         ],
         [
-            'text' => 'fitosanitarios',
+            'text' => 'Fitosanitarios',
             'url' => 'fitosanitarios/',
-            'icon' => 'fas fa-fw fa-users',
+            'icon' => 'fas fa-fw fa-leaf',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Configuración de cuenta'],
         [
-            'text' => 'profile',
+            'text' => 'Perfil',
             'url' => '/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
+            'text' => 'Cambiar contraseña',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        [
+        /* [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
             'submenu' => [
@@ -416,8 +414,8 @@ return [
             'text' => 'information',
             'icon_color' => 'cyan',
             'url' => '#',
-        ],
-    ],
+        ],*/
+    ], 
 
     /*
     |--------------------------------------------------------------------------

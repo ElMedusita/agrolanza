@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id();
             $table->enum('tipo_servicio', ['CP', 'CM', 'SC', 'SS']);
             $table->string('descripcion', 60);
-            $table->enum('metodo_pago', ['EF', 'TA', 'TR']);
             $table->timestamp('fecha_servicio')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->integer('duracion');
             $table->decimal('presupuesto', 7, 2);
-            $table->enum('forma_pago', ['EF', 'TA', 'TR']);
+            $table->enum('metodo_pago', ['EF', 'TA', 'TR']);
             $table->enum('estado', ['P', 'N']);
             $table->unsignedBigInteger('id_parcela');
 
