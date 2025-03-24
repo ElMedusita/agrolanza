@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->enum('tipo_servicio', ['CP', 'CM', 'SC', 'SS']);
             $table->string('descripcion', 60);
-            $table->timestamp('fecha_servicio')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->date('fecha_servicio');
+            $table->time('hora_servicio');
             $table->integer('duracion');
             $table->decimal('presupuesto', 7, 2);
             $table->enum('metodo_pago', ['EF', 'TA', 'TR']);

@@ -15,7 +15,7 @@ class ServicioController extends Controller
     {
         $servicios = Servicio::with('parcela')->paginate(10);
 
-        $TIPOS_SERVICIO     = Servicio::TIPOS_SERVICIO;
+        $TIPOS_SERVICIO = Servicio::TIPOS_SERVICIO;
         $METODOS_PAGO   = Servicio::METODOS_PAGO;
         $ESTADOS        = Servicio::ESTADOS;
 
@@ -25,9 +25,14 @@ class ServicioController extends Controller
     function formulario($oper='', $id='')
     {
         $servicio = empty($id) ? new Servicio() : Servicio::find($id);
-        $parcelas = Parcelas::all();
+        $parcelas = Parcela::all();
 
-        return view('servicios.formulario', compact('servicio', 'oper', 'parcelas'));
+        $TIPOS_SERVICIO = Servicio::TIPOS_SERVICIO;
+        $METODOS_PAGO   = Servicio::METODOS_PAGO;
+        $ESTADOS        = Servicio::ESTADOS;
+
+        return view('servicios.formulario',compact('TIPOS_SERVICIO', 'METODOS_PAGO', 'ESTADOS','servicio', 'oper', 'parcelas'));
+
     }
 ##Falta cambiar variable parcela a servicio
     function mostrar($id)
