@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .bindPopup("Ubicación de la parcela")
         .openPopup();
 
-    document.getElementById("id_cliente").addEventListener("change", function () {
+    document.getElementById("id_parcela").addEventListener("change", function () {
         var parcelaId = this.value;
         var seleccionada = parcelas.find(p => p.id == parcelaId);
 

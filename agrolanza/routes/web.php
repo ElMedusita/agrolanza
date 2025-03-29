@@ -14,6 +14,8 @@ use App\Http\Controllers\ParcelaController;
 use App\Models\Parcela;
 use App\Http\Controllers\ServicioController;
 use App\Models\Servicio;
+use App\Http\Controllers\ServicioUserController;
+use App\Models\ServicioUser;
 
 Route::get('/', function () {
     return view('welcome');
@@ -122,6 +124,16 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/servicio/eliminar/{id}'   , [ServicioController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('servicios.eliminar');
     Route::get('/servicios/nuevo'          , [ServicioController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('servicios.alta');
     Route::post('/servicios/nuevo'         , [ServicioController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('servicios.almacenar');
+
+});
+
+  ###########################
+ ## Servicios y empleados ##
+###########################
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
+
+    Route::get('/servicios/{id}/users', [ServicioUserController::class, 'index'])->name('servicio.users');
 
 });
 

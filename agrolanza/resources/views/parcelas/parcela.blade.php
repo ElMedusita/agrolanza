@@ -23,7 +23,7 @@
     <tr>
         <td>{{ $parcela->cliente->nombre }} {{ $parcela->cliente->apellidos }}</td>
         <td>{{ $parcela->referencia_catastral}}</td> 
-        <td>{{ $parcela->superficie }}</td>
+        <td>{{ $parcela->superficie }} m²</td>
         <td>{{ $parcela->latitud }}</td> 
         <td>{{ $parcela->longitud }}</td>
         

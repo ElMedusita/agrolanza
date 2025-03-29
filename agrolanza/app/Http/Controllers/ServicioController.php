@@ -74,6 +74,15 @@ class ServicioController extends Controller
             }
             $validacion_tipo_servicio = substr($validacion_tipo_servicio,0,-1);
 
+
+            $validacion_metodo_pago = '';
+            foreach(Servicio::METODOS_PAGO as $codigo_metodo_pago => $texto_metodo_pago)
+            {
+                $validacion_metodo_pago .= $codigo_metodo_pago .',';
+            }
+            $validacion_metodo_pago = substr($validacion_metodo_pago,0,-1);
+
+
             $validacion_estado = '';
             foreach(Servicio::ESTADOS as $codigo_estado => $texto_estado)
             {
@@ -82,39 +91,45 @@ class ServicioController extends Controller
             $validacion_estado = substr($validacion_estado,0,-1);
 
             $validatedData = $request->validate([
-                'id_parcela'   => 'required',
                 'tipo_servicio' => 'required|in:'.$validacion_tipo_servicio,
-                'descripcion'   => 'required|max:100',
-                'fecha_servicio'    => 'required|date',
-                'hora_servicio'    => 'required',
-                'duracion'    => 'required|integer',
-                'presupuesto'    => 'required|numeric',
-                'metodo_pago'    => 'required|in:'.$validacion_metodo_pago,
+                'descripcion'   => 'required|string|max:255',
+                'fecha_servicio'=> 'required|date',
+                'hora_servicio' => 'required',
+                'duracion'      => 'required|integer',
+                'presupuesto'   => 'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
+                'metodo_pago'   => 'required|in:'.$validacion_metodo_pago,
+                'estado'        => 'required|in:'.$validacion_estado,
+                
+                'id_parcela'    => 'required|exists:parcelas,id',
             ], [
-                'id_parcela.required' => 'La parcela es obligatoria',
+                'tipo_servicio.required' => 'El tipo de servicio es obligatorio.',
 
-                'tipo_servicio.required' => 'El tipo de servicio es obligatorio',
+                'descripcion.required' => 'La descripción es obligatoria.',
+                'descripcion.string' => 'Debe ser de tipo cadena de texto.',
+                'descripcion.max'    => 'Máximo 255 caracteres',
 
-                'descripcion.required' => 'Una descripción es obligatoria',
-                'descripcion.max'  => 'Se soporta un máximo de 100 caracteres',
+                'fecha_servicio.required' => 'La fecha es obligatoria.',
+                'fecha_servicio.date'     => 'Debe ser de tipo fecha.',
 
-                'fecha_servicio.required' => 'La fecha del servicio es obligatoria',
-                'fecha_servicio.date' => 'La fecha del servicio debe ser una fecha válida',
+                'hora_servicio.required' => 'La hora es obligatoria.',
 
-                'hora_servicio.required' => 'La hora del servicio es obligatoria',
+                'duracion.required' => 'La duración es obligatoria.',
+                'duracion.integer'  => 'Debe ser de tipo numérico entero.',
 
-                'duracion.required' => 'La duración del servicio es obligatoria',
-                'duracion.integer' => 'La duración del servicio debe ser un número',
+                'presupuesto.required' => 'El importe es obligatorio.',
+                'presupuesto.numeric'  => 'Debe ser de tipo numérico.',
+                'presupuesto.regex'    => 'El formato admitido es un numero entero de maximo 5 digitos con decimales opcionales 1 o 2 como máximo',
 
-                'presupuesto.required' => 'El presupuesto es obligatorio',
-                'presupuesto.numeric' => 'El presupuesto debe ser un número',
+                'metodo_pago.required' => 'El método de pago es obligatorio.',
 
-                'metodo_pago.required' => 'El método de pago es obligatorio',
+                'estado.required' => 'El estado es obligatorio.',
+
+                'id_parcela.required' => 'La parcela es obligatoria.',
+                'id_parcela.exists'   => 'La parcela seleccionada no existe.',
             ]);
 
             $servicio = empty($request->id)? new Servicio() : Servicio::find($request->id);
 
-            $servicio->id_parcela     = $request->id_parcela;
             $servicio->tipo_servicio  = $request->tipo_servicio;
             $servicio->descripcion    = $request->descripcion;
             $servicio->fecha_servicio = $request->fecha_servicio;
@@ -123,6 +138,7 @@ class ServicioController extends Controller
             $servicio->presupuesto    = $request->presupuesto;
             $servicio->metodo_pago    = $request->metodo_pago;
             $servicio->estado         = $request->estado;
+            $servicio->id_parcela     = $request->id_parcela;
             $servicio->ip_alta        = $request->ip();
 
             $servicio->save();

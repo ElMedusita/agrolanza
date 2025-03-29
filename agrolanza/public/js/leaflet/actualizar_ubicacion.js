@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var latitud = parseFloat(document.getElementById("latitud").value) || 28.99;
     var longitud = parseFloat(document.getElementById("longitud").value) || -13.54;
 
-    var map = L.map('map').setView([latitud, longitud], 15);
+    var map = L.map('show_map').setView([latitud, longitud], 15);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 18,

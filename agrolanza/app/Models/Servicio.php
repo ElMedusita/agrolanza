@@ -45,6 +45,6 @@ class Servicio extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'servicios_users', 'id_servicio', 'id_user');
     }
 }

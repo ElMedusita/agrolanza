@@ -50,6 +50,6 @@ class User extends Authenticatable
 
     public function servicios()
     {
-        return $this->belongsToMany(Servicio::class);
+        return $this->belongsToMany(Servicio::class, 'servicios_users', 'id_user', 'id_servicio');
     }
 }

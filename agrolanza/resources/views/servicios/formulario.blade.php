@@ -12,6 +12,13 @@
         $disabled = '';
         $boton_guardar = '<button type="submit" class="btn btn-primary">Guardar</button>';
         $script_leaflet = "<script src=\"" . asset('js/leaflet/mostrar_ubicacion.js') . "\"></script>";
+        $gestion_empleados = '<p><a href="' . route('servicio.users', ['id' => $servicio->id]) . '" class="btn btn-primary">Gestión de empleados</a></p>';
+
+
+        if ($oper != 'cons')
+        {
+            $gestion_empleados = '';
+        }
 
         if (session('formData') || $oper == 'cons' || $oper == 'supr')
         {
@@ -28,14 +35,16 @@
         <p style="text-align:center;" class="alert alert-success">{{ session('success') }}</p>
     @endif
     
-    <form action="{{ route('parcelas.almacenar') }}" method="POST">
+    @php echo $gestion_empleados; @endphp
+
+    <form action="{{ route('servicios.almacenar') }}" method="POST">
         @csrf
         <input type="hidden" name="oper" value="{{ $oper }}" />
         <input type="hidden" name="id" value="{{ $servicio->id }}" />
         
         <div class="mb-3">
-            <label for="id_cliente" class="form-label">Parcela</label>
-            <select {{ $disabled }} name="id_cliente" id="id_cliente" class="form-select form-select-sm">
+            <label for="id_parcela" class="form-label">Parcela</label>
+            <select {{ $disabled }} name="id_parcela" id="id_parcela" class="form-select form-select-sm">
                 <option value="">Selecciona una parcela...</option>
                 @foreach ($parcelas as $parcela)
                     <option value="{{ $parcela->id }}" 
@@ -65,28 +74,27 @@
 
         <div id="show_map" style="height: 400px; margin-top: 20px;"></div>
 
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script>
             $(document).ready(function () {
-                $('#id_cliente').change(function () {
+                $('#id_parcela').change(function () {
                     var parcelaId = $(this).val();
                     
                     // Buscar la opción seleccionada en la lista de parcelas
-                    var parcela = @json($parcelas);
-                    var seleccionada = parcela.find(p => p.id == parcelaId);
+                    var seleccionada = parcelas.find(p => p.id == parcelaId);
 
                     if (seleccionada) {
-                        $('#latitud').text(seleccionada.latitud);
-                        $('#longitud').text(seleccionada.longitud);
+                        $('#latitud').val(seleccionada.latitud);
+                        $('#longitud').val(seleccionada.longitud);
                         updateMap();
                     } else {
-                        $('#latitud').text('');
-                        $('#longitud').text('');
+                        $('#latitud').val('');
+                        $('#longitud').val('');
                     }
                 });
             });
         </script>
+
         <div id="show_map"></div>
 
         <br>
@@ -110,7 +118,7 @@
 
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción</label>
-            <input {{ $disabled }} type="text" step="1" name="Descripción" class="form-control" id="descripcion" value="{{ old('descripcion',$servicio->descripcion)}}" placeholder="Descripción">
+            <input {{ $disabled }} type="text" name="descripcion" class="form-control" id="descripcion" value="{{ old('descripcion',$servicio->descripcion)}}" placeholder="Descripción">
             @error('descripcion') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
@@ -156,14 +164,22 @@
         </div>
 
         <div class="mb-3">
-            <label for="estado_pago" class="form-label">Estado de Pago</label>
-            <div class="form-check">
-                <input type="checkbox" name="estado_pago" class="form-check-input" id="estado_pago" value="P" 
-                    {{ old('estado_pago', $servicio->estado_pago ?? 'N') === 'P' ? 'checked' : '' }}>
-                <label class="form-check-label" for="estado_pago">Pagado</label>
-            </div>
-            @error('estado_pago') <p style="color: red;">{{ $message }}</p> @enderror
+            <label for="estado" class="form-label">Estado de pago</label>
+            <select {{ $disabled }}  name="estado" id="estado" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option value="">Selecciona un estado...</option>
+                @foreach ($ESTADOS as $clave_estado => $texto_estado)
+        
+                    @php
+                        $selected = old('estado') == $clave_estado || $servicio->estado == $clave_estado ? 'selected="selected"' : '';
+                    @endphp
+
+                    <option value="{{ $clave_estado }}" {{ $selected }}>{{ $texto_estado }}</option>
+
+                @endforeach
+            </select>
+            @error('estado') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
+        
 
         @php echo $boton_guardar; @endphp
 
