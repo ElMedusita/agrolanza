@@ -25,7 +25,6 @@ class Fitosanitario extends Model
 
    public function servicios()
     {
-        return $this->belongsToMany(Servicio::class);
+        return $this->belongsToMany(Servicio::class, 'servicios_fitosanitarios', 'id_fitosanitario', 'id_servicio');
     }
-    
 }

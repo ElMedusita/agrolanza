@@ -10,6 +10,6 @@ class Maquinaria extends Model
 
     public function servicios()
     {
-        return $this->belongsToMany(Servicio::class);
+        return $this->belongsToMany(Servicio::class, 'servicios_maquinarias', 'id_maquinaria', 'id_servicio');
     }
 }

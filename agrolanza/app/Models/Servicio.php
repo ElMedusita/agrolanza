@@ -35,12 +35,12 @@ class Servicio extends Model
 
     public function fitosanitarios()
     {
-        return $this->belongsToMany(Fitosanitario::class);
+        return $this->belongsToMany(Fitosanitario::class, 'servicios_fitosanitarios', 'id_servicio', 'id_fitosanitario');
     }
 
     public function maquinarias()
     {
-        return $this->belongsToMany(Maquinaria::class);
+        return $this->belongsToMany(Maquinaria::class, 'servicios_maquinarias', 'id_servicio', 'id_maquinaria');
     }
 
     public function users()

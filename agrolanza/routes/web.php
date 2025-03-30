@@ -14,8 +14,7 @@ use App\Http\Controllers\ParcelaController;
 use App\Models\Parcela;
 use App\Http\Controllers\ServicioController;
 use App\Models\Servicio;
-use App\Http\Controllers\ServicioUserController;
-use App\Models\ServicioUser;
+use App\Http\Controllers\GestionServicioController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -127,13 +126,25 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
 
 });
 
-  ###########################
- ## Servicios y empleados ##
-###########################
+  ############################
+ ## Gestiones de servicios ##
+############################
 
 Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
 
-    Route::get('/servicios/{id}/users', [ServicioUserController::class, 'index'])->name('servicio.users');
+    Route::get('/servicios/{id}/opciones', [GestionServicioController::class, 'index'])->name('servicio.opciones');
+
+    #Empleados
+    Route::post('/servicios/{id_servicio}/opciones', [GestionServicioController::class, 'store_user'])->name('servicios.opciones.store.users');
+    Route::delete('/servicios/{id_servicio}/opciones/{id_user}', [GestionServicioController::class, 'destroy_user'])->name('servicios.opciones.destroy.users');
+
+    #Fitosanitarios
+    Route::post('/servicios/{id_servicio}/fitosanitarios', [GestionServicioController::class, 'store_fitosanitario'])->name('servicios.opciones.store.fitosanitarios');
+    Route::delete('/servicios/{id_servicio}/fitosanitarios/{id_fitosanitario}', [GestionServicioController::class, 'destroy_fitosanitario'])->name('servicios.opciones.destroy.fitosanitarios');
+
+    #Maquinarias
+    Route::post('/servicios/{id_servicio}/maquinarias', [GestionServicioController::class, 'store_maquinaria'])->name('servicios.opciones.store.maquinarias');
+    Route::delete('/servicios/{id_servicio}/maquinarias/{id_maquinaria}', [GestionServicioController::class, 'destroy_maquinaria'])->name('servicios.opciones.destroy.maquinarias');
 
 });
 

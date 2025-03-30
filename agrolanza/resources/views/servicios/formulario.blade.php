@@ -12,7 +12,7 @@
         $disabled = '';
         $boton_guardar = '<button type="submit" class="btn btn-primary">Guardar</button>';
         $script_leaflet = "<script src=\"" . asset('js/leaflet/mostrar_ubicacion.js') . "\"></script>";
-        $gestion_empleados = '<p><a href="' . route('servicio.users', ['id' => $servicio->id]) . '" class="btn btn-primary">Gestión de empleados</a></p>';
+        $gestion_empleados = '<p><a href="' . route('servicio.opciones', ['id' => $servicio->id]) . '" class="btn btn-primary">Gestión de empleados</a></p>';
 
 
         if ($oper != 'cons')
