@@ -5,6 +5,11 @@
 
 @section('content')
 
+    <br>
+    <p><a href="{{ url('/servicios') }}" class="btn btn-secondary">Volver</a></p>
+
+    <h2>Gestión de servicios</h2>
+
     @php
         if (session('formData'))
             $servicio = session('formData');
@@ -12,7 +17,7 @@
         $disabled = '';
         $boton_guardar = '<button type="submit" class="btn btn-primary">Guardar</button>';
         $script_leaflet = "<script src=\"" . asset('js/leaflet/mostrar_ubicacion.js') . "\"></script>";
-        $gestion_empleados = '<p><a href="' . route('servicio.opciones', ['id' => $servicio->id]) . '" class="btn btn-primary">Gestión de empleados</a></p>';
+        $gestion_empleados = '<p><a href="' . route('servicio.opciones', ['id' => $servicio->id]) . '" class="btn btn-primary">Gestiar servicio</a></p>';
 
 
         if ($oper != 'cons')
@@ -184,5 +189,6 @@
         @php echo $boton_guardar; @endphp
 
     </form>
+    <br>
 
 @endsection

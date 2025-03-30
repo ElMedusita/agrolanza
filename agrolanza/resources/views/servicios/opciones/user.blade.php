@@ -1,15 +1,20 @@
 @extends('layouts.app')
 @extends('adminlte::page')
 
-@section('content')
+@section('title', 'Gestión de servicio')
 
-<div class="container gestion_empleados">
-    <h2>Empleados del servicio: {{ $servicio->id }}</h2>
+@section('content')
+<br>
+<p><a href="{{ url('/servicio/' . $servicio->id) }}" class="btn btn-secondary">Volver</a></p>
+<h2>Gestión del servicio {{ $servicio->id }}</h2>
+<div class="container table-responsive">
+    
+    <h3>Empleados</h3>
 
     @if ($servicio->users->isEmpty())
         <p>No hay usuarios asociados a este servicio.</p>
     @else
-        <table class="table table-bordered">
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -53,13 +58,14 @@
     </form>
 </div>
 
-<div class="container gestion_fitosanitarios">
-    <h2>Fitosanitarios del servicio: {{ $servicio->id }}</h2>
+<div class="container table-responsive">
+
+    <h3>Fitosanitarios</h3>
 
     @if ($servicio->fitosanitarios->isEmpty())
         <p>No hay fitosanitarios asociados a este servicio.</p>
     @else
-        <table class="table table-bordered">
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -104,13 +110,14 @@
     </form>
 </div>
 
-<div class="container gestion_maquinarias">
-    <h2>Maquinarias del servicio: {{ $servicio->id }}</h2>
+<div class="container table-responsive">
+
+    <h3>Maquinarias</h3>
 
     @if ($servicio->maquinarias->isEmpty())
         <p>No hay maquinarias asociadas a este servicio.</p>
     @else
-        <table class="table table-bordered">
+        <table class="table">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -155,7 +162,6 @@
     </form>
 </div>
 
-<p><a href="{{ url('/servicio/' . $servicio->id) }}" class="btn btn-secondary">Volver</a></p>
 
 
 @endsection

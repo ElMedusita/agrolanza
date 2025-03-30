@@ -16,7 +16,7 @@
             <td><b>Duración</b></td>
             <td><b>Presupuesto</b></td>
             <td><b>Estado</b></td>
-            <td><b></b></td>
+            <td><b>Acciones</b></td>
         </tr>
 
     

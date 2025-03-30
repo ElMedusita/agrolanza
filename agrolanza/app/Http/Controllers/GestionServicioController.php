@@ -13,7 +13,15 @@ class GestionServicioController extends Controller
     public function index($id)
     {
         $servicio = Servicio::with('users')->findOrFail($id);
-        $users_disponibles = User::whereNotIn('id', $servicio->users->pluck('id'))->get();
+        
+        // Filtrar usuarios activos
+        $users_disponibles = User::whereNotIn('id', $servicio->users->pluck('id'))
+            ->where('fecha_comienzo', '<=', $servicio->fecha_servicio)
+            ->where(function ($query) use ($servicio) {
+                $query->whereNull('fecha_fin')
+                    ->orWhere('fecha_fin', '>=', $servicio->fecha_servicio);
+        })->get();
+
         $fitosanitarios_disponibles = Fitosanitario::whereNotIn('id', $servicio->fitosanitarios->pluck('id'))->get();
         $maquinarias_disponibles = Maquinaria::whereNotIn('id', $servicio->maquinarias->pluck('id'))->get();
 

@@ -2,10 +2,14 @@
 @extends('adminlte::page')
 
 
-@section('title', 'Alta de usuario')
+@section('title', 'Alta de empleado')
 
 @section('content')
 
+    <br>
+    <p><a href="{{ url('/users') }}" class="btn btn-secondary">Volver</a></p>
+
+    <h2>Gestión de empleado</h2>
 
     @php
 
@@ -96,7 +100,32 @@
             <input {{ $disabled }}  type="date" name="fecha_fin" class="form-control" id="fecha_fin" value="{{ old('fecha_fin',$user->fecha_fin)}}" placeholder="Fecha fin">
             @error('fecha_fin') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
-        @if ($oper != 'cons' && $oper != 'supr' && $oper != 'modi')
+
+        <div class="mb-3">
+            <div class="form-check form-check-inline">
+                <input {{ $disabled }} type="checkbox" name="is_auxiliar" id="is_auxiliar" class="form-check-input"
+                    {{ old('is_auxiliar', $user->hasRole('auxiliar')) ? 'checked' : '' }}>
+                <label for="is_auxiliar" class="form-check-label ms-1">Es auxiliar</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input {{ $disabled }} type="checkbox" name="is_conductor" id="is_conductor" class="form-check-input"
+                    {{ old('is_conductor', $user->hasRole('conductor')) ? 'checked' : '' }}>
+                <label for="is_conductor" class="form-check-label ms-1">Es conductor</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input {{ $disabled }} type="checkbox" name="is_aplicador" id="is_aplicador" class="form-check-input"
+                    {{ old('is_aplicador', $user->hasRole('aplicador')) ? 'checked' : '' }}>
+                <label for="is_aplicador" class="form-check-label ms-1">Es aplicador</label>
+            </div>
+
+            @error('is_auxiliar') <p class="text-danger">{{ $message }}</p> @enderror
+            @error('is_conductor') <p class="text-danger">{{ $message }}</p> @enderror
+            @error('is_aplicador') <p class="text-danger">{{ $message }}</p> @enderror
+        </div>
+
+        @if ($oper == 'modi' || empty($user->id))
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
             <input {{ $disabled }}  type="password" name="password" class="form-control" id="password" placeholder="Contraseña">
@@ -117,6 +146,6 @@
         @endphp
 
     </form>
+    <br>
 
 @endsection
-

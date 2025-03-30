@@ -76,60 +76,52 @@ class FitosanitarioController extends Controller
             $validacion_estado = substr($validacion_estado,0,-1);
             
             $validatedData = $request->validate([
-                'nombre'         => 'required|string|max:255',
-                'marca'          => 'required|string|max:255',
-                'numero_registro' => 'required|string|max:255',
+                'nombre'         => 'required|max:20',
+                'marca'          => 'required|max:20',
+                'numero_registro' => 'required|max:14',
                 'tipo'         => 'required|in:'.$validacion_tipo,
                 'estado'       => 'required|in:'.$validacion_estado,
-                'descripcion'    => 'required|string|max:255',
-                'entidad_vendedora' => 'required|string|max:255',
-                'materia_activa' => 'required|string|max:255',
+                'descripcion'    => 'required|max:200',
+                'entidad_vendedora' => 'required|max:40',
+                'materia_activa' => 'required|max:30',
                 'cantidad_materia_activa' => 'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
                 'dosis_maxima' => 'required|numeric|regex:/^[\d]{0,5}(\.[\d]{1,2})?$/',
-                'plazo_seguridad' => 'required|integer',
-                'observaciones' => 'nullable|string|max:255',
+                'plazo_seguridad' => 'required|integer|max:1000',
+                'observaciones' => 'nullable|max:200',
             ], [
                 'nombre.required' => 'El nombre es obligatorio.',
-                'nombre.string'   => 'Debe ser de tipo cadena de texto.',
-                'nombre.max'      => 'Máximo 255 caracteres',
+                'nombre.max'      => 'Máximo 20 caracteres',
 
                 'marca.required' => 'La marca es obligatoria.',
-                'marca.string'   => 'Debe ser de tipo cadena de texto.',
-                'marca.max'      => 'Máximo 255 caracteres',
+                'marca.max'      => 'Máximo 20 caracteres',
 
                 'numero_registro.required' => 'El número de registro es obligatorio.',
-                'numero_registro.string'   => 'Debe ser de tipo cadena de texto.',
-                'numero_registro.max'      => 'Máximo 255 caracteres',
+                'numero_registro.max'      => 'No debe exceder 14 caracteres',
 
                 'tipo.required'      => 'El tipo es obligatorio.',
 
                 'estado.required'    => 'El estado es obligatorio.',
 
-                'descripcion.required'   => 'La descripción es obligatoria.',
-                'descripcion.string'     => 'Debe ser de tipo cadena de texto.',
-                'descripcion.max'        => 'Máximo 255 caracteres',
-
-                'entidad_vendedora.required' => 'El nombre de la entidad vendedora del producto es obligatorio.',
-                'entidad_vendedora.string'   => 'Debe ser de tipo cadena de texto.',
-                'entidad_vendedora.max'      => 'Máximo 255 caracteres',
-
+                'descripcion.required' => 'La descripción es obligatoria.',
+                'descripcion.max' => 'La descripción no debe exceder los 200 caracteres.',
+                
+                'entidad_vendedora.required' => 'La entidad vendedora es obligatoria.',
+                'entidad_vendedora.max' => 'La entidad vendedora no debe exceder los 40 caracteres.',
+                
                 'materia_activa.required' => 'La materia activa es obligatoria.',
-                'materia_activa.string'   => 'Debe ser de tipo cadena de texto.',
-                'materia_activa.max'      => 'Máximo 255 caracteres',
-
+                'materia_activa.max' => 'La materia activa no debe exceder los 30 caracteres.',
+                
                 'cantidad_materia_activa.required' => 'La cantidad de materia activa es obligatoria.',
-                'cantidad_materia_activa.numeric'  => 'Debe ser de tipo numérico.',
-                'cantidad_materia_activa.regex'    => 'El formato admitido es un numero entero de maximo 5 digitos con decimales opcionales 1 o 2 como máximo',
-
+                'cantidad_materia_activa.numeric' => 'La cantidad de materia activa debe ser un valor numérico.',
+                'cantidad_materia_activa.regex' => 'La cantidad de materia activa debe ser un número entero o decimal con hasta 2 decimales.',
+                
                 'dosis_maxima.required' => 'La dosis máxima es obligatoria.',
-                'dosis_maxima.numeric'  => 'Debe ser de tipo numérico.',
-                'dosis_maxima.regex'    => 'El formato admitido es un numero entero de maximo 5 digitos con decimales opcionales 1 o 2 como máximo',
-
-                'plazo_seguridad.required' => ' El plazo de seguridad es obligatorio.',
-                'plazo_seguridad.integer'  => 'Debe ser de tipo numérico entero.',
-
-                'observaciones.string'   => 'Debe ser de tipo cadena de texto.',
-                'observaciones.max'      => 'Máximo 255 caracteres',
+                'dosis_maxima.numeric' => 'La dosis máxima debe ser un valor numérico.',
+                'dosis_maxima.regex' => 'La dosis máxima debe ser un número entero o decimal con hasta 2 decimales.',
+                
+                'plazo_seguridad.required' => 'El plazo de seguridad es obligatorio.',
+                'plazo_seguridad.integer' => 'El plazo de seguridad debe ser un número entero.',
+                'plazo_seguridad.max' => 'El plazo de seguridad no debe exceder los 1000 días.',
             ]);
 
             $fitosanitario = empty($request->id)? new Fitosanitario() : Fitosanitario::find($request->id);

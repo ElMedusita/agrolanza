@@ -14,6 +14,7 @@
             <td><b>Superficie</b></td>
             <td><b>Latitud</b></td>
             <td><b>Longitud</b></td>
+            <td><b>Acciones</b></td>
         </tr>
 
     

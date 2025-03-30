@@ -5,6 +5,11 @@
 
 @section('content')
 
+<br>
+<p><a href="{{ url('/parcelas') }}" class="btn btn-secondary">Volver</a></p>
+
+<h2>Gestión de parcela</h2>
+
     @php
         if (session('formData'))
             $parcela = session('formData');
@@ -57,7 +62,7 @@
 
         <div class="mb-3">
             <label for="superficie" class="form-label">Superficie</label>
-            <input {{ $disabled }} type="number" step="1" name="superficie" class="form-control" id="superficie" value="{{ old('superficie',$parcela->superficie)}}" placeholder="Superficie">
+            <input {{ $disabled }} type="number" step="1" min="1" name="superficie" class="form-control" id="superficie" value="{{ old('superficie',$parcela->superficie)}}" placeholder="Superficie">
             @error('superficie') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
@@ -83,5 +88,7 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
     @php echo $script_leaflet; @endphp
+
+    <br>
     
 @endsection

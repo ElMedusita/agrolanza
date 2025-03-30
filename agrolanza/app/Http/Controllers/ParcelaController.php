@@ -57,25 +57,26 @@ class ParcelaController extends Controller
         else
         {
             $validatedData = $request->validate([
-                'id_cliente'   => 'required',
-                'referencia_catastral' => 'required|max:100',
-                'superficie'          => 'required|integer',
+                'id_cliente' => 'required',
+                'referencia_catastral' => ['required', 'regex:/^[A-Za-z0-9]{20}$/'],
+                'superficie' => 'required|integer|max:10000000',
                 'latitud'    => 'required|numeric',
-                'longitud'    => 'required|numeric',
+                'longitud'   => 'required|numeric',
             ], [
-                'id_cliente.required' => 'El cliente es obligatorio',
+                'id_cliente.required' => 'El cliente es obligatorio.',
 
-                'referencia_catastral.required' => 'La referencia catastral es obligatoria',
-                'referencia_catastral.max'      => 'Máximo 100 caracteres',
+                'referencia_catastral.required' => 'La referencia catastral es obligatoria.',
+                'referencia_catastral.regex'    => 'El formato es de 20 valores alfanuméricos.',
 
-                'superficie.required' => 'La superficie es obligatoria',
-                'superficie.integer'  => 'La superficie debe ser un número entero',
+                'superficie.required' => 'La superficie es obligatoria.',
+                'superficie.integer'  => 'La superficie debe ser un número entero.',
+                'superficie.max'      => 'El límite es de 10000000 m².',
 
-                'latitud.required' => 'La latitud es obligatoria',
-                'latitud.numeric'      => 'La latitud debe ser un número',
+                'latitud.required' => 'La latitud es obligatoria.',
+                'latitud.numeric'  => 'La latitud debe ser un número.',
 
-                'longitud.required' => 'La longitud es obligatoria',
-                'longitud.numeric'      => 'La longitud debe ser un número',
+                'longitud.required' => 'La longitud es obligatoria.',
+                'longitud.numeric'  => 'La longitud debe ser un número.',
             ]);
 
             $parcela = empty($request->id)? new Parcela() : Parcela::find($request->id);

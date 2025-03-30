@@ -55,33 +55,36 @@ class ClienteController extends Controller
         else
         {   
             $validatedData = $request->validate([
-                'identificacion' => 'required|max:100',
-                'nombre'         => 'required|max:100',
-                'apellidos'      => 'required|max:100',
-                'email'          => 'nullable|max:255',
+                'identificacion' => ['required', 'regex:/^([X-Z])?\d{8}[A-Z]$/', 'unique:clientes,identificacion,' . $request->id],
+                'nombre'         => 'required|string|max:50',
+                'apellidos'      => 'required|string|max:50',
+                'email'          => 'nullable|string|email|max:255|unique:users,email,' . $request->id,
                 'telefono'       => 'required|string|size:9|regex:/[0-9]{9}/',
-                'codigo_postal'  => 'required|string|size:5|regex:/[0-9]{5}/',
+                'codigo_postal'  => 'required|regex:/^\d{5}$/',
 
             ], [
-                'identificacion.required' => 'La identificación del cliente es obligatoria.',
-                'identificacion.max'      => 'Máximo 100 caracteres',
+                'identificacion.required' => 'El NIF/NIE es obligatorio.',
+                'identificacion.regex' => 'El formato del NIF/NIE no es válido. Debe ser de 8 dígitos seguidos de una letra.',
+                'identificacion.unique' => 'Este NIF/NIE ya está registrado.',
+    
+                'nombre.required'  => 'El nombre es obligatorio.',
+                'nombre.string'    => 'Solo se admiten letras',
+                'nombre.max'       => 'Máximo 50 caracteres.',
+    
+                'apellidos.required'  => 'El nombre es obligatorio.',
+                'apellidos.string'    => 'Solo se admiten letras',
+                'apellidos.max'       => 'Máximo 50 caracteres.',
+                
+                'email.email'    => 'Debe ser un correo válido.',
+                'email.max'      => 'Máximo 255 caracteres.',
+                'email.unique'   => 'Este correo ya está registrado.',
+    
+                'telefono.required'       => 'El teléfono es obligatorio.',
+                'telefono.regex'          => 'El teléfono debe tener exactamente 9 dígitos.',
+                
 
-                'nombre.required' => 'El nombre es obligatorio.',
-                'nombre.max'      => 'Máximo 100 caracteres',
-
-                'apellidos.required' => 'Los apellidos son obligatorios.',
-                'apellidos.max'      => 'Máximo 100 caracteres',
-
-                'email.max'      => 'Máximo 255 caracteres',
-
-                'telefono.required' => 'Es obligatorio almacenar un teléfono de contacto.',
-                'telefono.max'      => 'Máximo 9 caracteres',
-                'telefono.integer'  => 'El teléfono debe ser un número entero.',
-
-
-                'codigo_postal.required' => 'El código postal es obligatorio.',
-                'codigo_postal.integer'  => 'El código postal debe ser un número entero.',
-                'codigo_postal.max'      => 'Máximo 5 caracteres',
+                'codigo_postal.required'  => 'El código postal es obligatorio.',
+                'codigo_postal.regex'     => 'El código postal debe tener exactamente 5 dígitos.',    
             ]);
 
             $cliente = empty($request->id)? new Cliente() : Cliente::find($request->id);

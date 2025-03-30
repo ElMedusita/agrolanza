@@ -92,7 +92,7 @@ class ServicioController extends Controller
 
             $validatedData = $request->validate([
                 'tipo_servicio' => 'required|in:'.$validacion_tipo_servicio,
-                'descripcion'   => 'required|string|max:255',
+                'descripcion'   => 'required|string|max:60',
                 'fecha_servicio'=> 'required|date',
                 'hora_servicio' => 'required',
                 'duracion'      => 'required|integer',
@@ -118,7 +118,7 @@ class ServicioController extends Controller
 
                 'presupuesto.required' => 'El importe es obligatorio.',
                 'presupuesto.numeric'  => 'Debe ser de tipo numérico.',
-                'presupuesto.regex'    => 'El formato admitido es un numero entero de maximo 5 digitos con decimales opcionales 1 o 2 como máximo',
+                'presupuesto.regex'    => 'El formato admitido es un numero positivo entero de maximo 5 digitos con decimales opcionales 1 o 2 como máximo',
 
                 'metodo_pago.required' => 'El método de pago es obligatorio.',
 

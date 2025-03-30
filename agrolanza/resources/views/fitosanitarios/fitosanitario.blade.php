@@ -14,7 +14,7 @@
             <td><b>Materia activa</b></td>
             <td><b>Dosis máxima</b></td>
             <td><b>Plazo de seguridad</b></td>
-            <td><b></b></td>
+            <td><b>Acciones</b></td>
         </tr>
     
     @foreach ($fitosanitarios as $fitosanitario)

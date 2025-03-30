@@ -6,6 +6,10 @@
 
 @section('content')
 
+    <br>
+    <p><a href="{{ url('/fitosanitarios') }}" class="btn btn-secondary">Volver</a></p>
+
+    <h2>Gestión de fitosanitario</h2>
 
     @php
 
@@ -126,6 +130,7 @@
         @endphp
 
     </form>
+    <br>
 
 @endsection
 

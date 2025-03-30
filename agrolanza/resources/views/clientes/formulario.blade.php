@@ -6,6 +6,10 @@
 
 @section('content')
 
+    <br>
+    <p><a href="{{ url('/clientes') }}" class="btn btn-secondary">Volver</a></p>
+
+    <h2>Gestión de cliente</h2>
 
     @php
 

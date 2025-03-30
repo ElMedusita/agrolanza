@@ -3,7 +3,7 @@
 @extends('layouts.app')
 
 
-@section('title', 'Listado de usuarios')
+@section('title', 'Listado de empleados')
 
 @section('content')
 <div class="table-responsive">
@@ -28,7 +28,7 @@
         <td>{{ $user->fecha_nacimiento }}</td>
         <td>{{ $user->email }}</td> 
         <td>{{ $user->telefono }}</td>
-        <td>
+        <td class="estado"><b>
             @php
                 $fecha_actual =  \Carbon\Carbon::now();
 
@@ -42,7 +42,7 @@
                 }
             @endphp
             {{ $estado_trabajo }}
-        </td>
+        </b></td>
         @role('admin')
         <td>
             <div>
@@ -66,9 +66,10 @@
     </table>
     {{ $users->links() }}
 </div>
-    @role('admin')
-    <a href="/users/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo usuario</a>
-    @endrole
-
+@role('admin')
+<a href="/users/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo usuario</a>
+@endrole
+<script src="{{ asset('js/styles/estado_empleado.js') }}"></script>
 
 @endsection
+

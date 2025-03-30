@@ -6,6 +6,10 @@
 
 @section('content')
 
+    <br>
+    <p><a href="{{ url('/maquinarias') }}" class="btn btn-secondary">Volver</a></p>
+
+    <h2>Gestión de maquinaria</h2>
 
     @php
 
@@ -58,13 +62,14 @@
         </div>
         
 
-      @php
+        @php
 
         echo $boton_guardar ;
     
         @endphp
 
     </form>
+    <br>
 
 @endsection
 

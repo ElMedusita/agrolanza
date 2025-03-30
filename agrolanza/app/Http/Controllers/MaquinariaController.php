@@ -55,22 +55,22 @@ class MaquinariaController extends Controller
         else
         {
             $validatedData = $request->validate([
-                'numero_serie'   => 'required|max:100',
-                'matricula'      => 'required|max:100',
-                'marca'          => 'required|max:100',
-                'descripcion'    => 'required|max:255'
+                'numero_serie'   => 'required|regex:/^[A-Za-z0-9]{15}$/',
+                'matricula'      => 'required|regex:/^[A-Za-z0-9]{8}$/',
+                'marca'          => 'required|max:20',
+                'descripcion'    => 'required|max:200'
             ], [
                 'numero_serie.required' => 'El número de serie es obligatorio.',
-                'numero_serie.max'      => 'Máximo 100 caracteres',
+                'numero_serie.regex'    => 'El formato es de 15 valores alfanuméricos.',
 
                 'matricula.required' => 'El autor es obligatorio.',
-                'matricula.max'      => 'Máximo 100 caracteres',
+                'matricula.regex'    => 'El formato es de 8 valores alfanuméricos.',
 
                 'marca.required' => 'La marca es obligatoria.',
-                'marca.max'      => 'Máximo 100 caracteres',
+                'marca.max'      => 'Máximo 20 caracteres.',
 
-                'descripcion.required' => 'La descripción es obligatoria.',
-                'descripcion.max'      => 'Máximo 255 caracteres',
+                'descripcion.required' => 'Se require de información acerca de la maquinaria.',
+                'descripcion.max'      => 'Máximo 200 caracteres.',
             ]);
 
             $maquinaria = empty($request->id)? new Maquinaria() : Maquinaria::find($request->id);
