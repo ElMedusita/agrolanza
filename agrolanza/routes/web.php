@@ -15,6 +15,7 @@ use App\Models\Parcela;
 use App\Http\Controllers\ServicioController;
 use App\Models\Servicio;
 use App\Http\Controllers\GestionServicioController;
+use App\Http\Controllers\PDFController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +44,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/user/eliminar/{id}'   , [UserController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('users.eliminar');
     Route::get('/users/nuevo'          , [UserController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('users.alta');
     Route::post('/users/nuevo'         , [UserController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('users.almacenar');
+
+    Route::get('users/pdf'             , [PDFController::class, 'pdf_users'])  ->name('users.pdf_users');
+    Route::get('/user/pdf/{id}'        , [PDFController::class, 'pdf_user'])   ->name('users.pdf_user');
+
 
 });
 
@@ -92,6 +97,9 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/clientes/nuevo'          , [ClienteController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('clientes.alta');
     Route::post('/clientes/nuevo'         , [ClienteController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('clientes.almacenar');
 
+    Route::get('clientes/pdf'             , [PDFController::class, 'pdf_clientes'])  ->name('clientes.pdf_clientes');
+    Route::get('/cliente/pdf/{id}'        , [PDFController::class, 'pdf_cliente'])   ->name('clientes.pdf_cliente');
+
 });
 
 
@@ -108,6 +116,8 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/parcelas/nuevo'          , [ParcelaController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('parcelas.alta');
     Route::post('/parcelas/nuevo'         , [ParcelaController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('parcelas.almacenar');
 
+    Route::get('parcelas/pdf'             , [PDFController::class, 'pdf_parcelas'])  ->name('parcelas.pdf_parcelas');
+    Route::get('/parcela/pdf/{id}'        , [PDFController::class, 'pdf_parcela'])   ->name('parcelas.pdf_parcela');
 });
 
 

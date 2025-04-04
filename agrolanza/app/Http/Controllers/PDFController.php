@@ -1,0 +1,62 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use PDF;
+use App\Models\User;
+use App\Models\Cliente;
+use App\Models\Parcela;
+
+class PDFController extends Controller
+{
+    function pdf_users()
+    {
+    $users = User::all();
+
+    $pdf = PDF::loadView('users.pdf_users', ['users' => $users])->setPaper('a4', 'landscape');
+    return $pdf->stream('users.pdf_users');
+    }
+
+    function pdf_user($id)
+    {
+        $user = User::findOrFail($id);
+
+        $pdf = PDF::loadView('users.pdf_user', ['user' => $user]);
+        return $pdf->stream("usuario_{$user->id}.pdf");
+    }
+
+
+    function pdf_clientes()
+    {
+    $clientes = Cliente::all();
+
+    $pdf = PDF::loadView('clientes.pdf_clientes', ['clientes' => $clientes])->setPaper('a4', 'landscape');
+    return $pdf->stream('clientes.pdf_clientes');
+    }
+
+    function pdf_cliente($id)
+    {
+        $cliente = Cliente::findOrFail($id);
+
+        $pdf = PDF::loadView('clientes.pdf_cliente', ['cliente' => $cliente]);
+        return $pdf->stream("cliente_{$cliente->id}.pdf");
+    }
+
+
+    function pdf_parcelas()
+    {
+    $parcelas = Parcela::all();
+
+    $pdf = PDF::loadView('parcelas.pdf_parcelas', ['parcelas' => $parcelas])->setPaper('a4', 'landscape');
+    return $pdf->stream('parcelas.pdf_parcelas');
+    }
+
+    function pdf_parcela($id)
+    {
+        $parcela = Parcela::findOrFail($id);
+
+        $pdf = PDF::loadView('parcelas.pdf_parcela', ['parcela' => $parcela]);
+        return $pdf->stream("parcela_{$parcela->id}.pdf");
+    }
+}

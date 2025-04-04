@@ -6,6 +6,11 @@
 @section('title', 'Listado de clientes')
 
 @section('content')
+
+<br>
+    
+    <h2>Clientes</h2>
+
 <div class="table-responsive">
     <table  class="table">
         <tr>
@@ -31,6 +36,7 @@
         @role(['admin', 'auxiliar'])
         <td>
             <div>
+            <a href="/cliente/pdf/{{ $cliente->id }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i></a>
                 <a href="/cliente/{{ $cliente->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
                 <a href="/cliente/actualizar/{{ $cliente->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                 <a href="/cliente/eliminar/{{ $cliente->id }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
@@ -44,7 +50,7 @@
     {{ $clientes->links() }}
 </div>
     @role('admin')
-    <a href="/clientes/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo cliente</a>
+    <p><a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a> <a href="/clientes/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo cliente</a> <a href="/clientes/pdf" class="btn btn-danger">Generar PDF</a></p>
     @endrole
 
 

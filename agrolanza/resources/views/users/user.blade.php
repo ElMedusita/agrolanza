@@ -6,6 +6,12 @@
 @section('title', 'Listado de empleados')
 
 @section('content')
+
+<br>
+    
+
+    <h2>Empleados</h2>
+
 <div class="table-responsive">
     <table  class="table">
         <tr>
@@ -25,7 +31,12 @@
     <tr>
         <td>{{ $user->name }}</td>
         <td>{{ $user->apellidos}}</td> 
-        <td>{{ $user->fecha_nacimiento }}</td>
+        <td>
+            @php
+            $fecha = new DateTime($user->fecha_nacimiento);
+            echo $fecha->format('d-m-Y');
+            @endphp
+        </td> 
         <td>{{ $user->email }}</td> 
         <td>{{ $user->telefono }}</td>
         <td class="estado"><b>
@@ -46,6 +57,7 @@
         @role('admin')
         <td>
             <div>
+                <a href="/user/pdf/{{ $user->id }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i></a>
                 <a href="/user/{{ $user->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
                 <a href="/user/actualizar/{{ $user->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                 <a href="/user/eliminar/{{ $user->id }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
@@ -67,7 +79,7 @@
     {{ $users->links() }}
 </div>
 @role('admin')
-<a href="/users/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo usuario</a>
+<p><a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a> <a href="/users/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo usuario</a> <a href="/users/pdf" class="btn btn-danger">Generar PDF</a></p>
 @endrole
 <script src="{{ asset('js/styles/estado_empleado.js') }}"></script>
 
