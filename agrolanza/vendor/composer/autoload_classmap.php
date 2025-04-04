@@ -20,6 +20,7 @@ return array(
     'App\\Http\\Controllers\\FitosanitarioController' => $baseDir . '/app/Http/Controllers/FitosanitarioController.php',
     'App\\Http\\Controllers\\GestionServicioController' => $baseDir . '/app/Http/Controllers/GestionServicioController.php',
     'App\\Http\\Controllers\\MaquinariaController' => $baseDir . '/app/Http/Controllers/MaquinariaController.php',
+    'App\\Http\\Controllers\\PDFController' => $baseDir . '/app/Http/Controllers/PDFController.php',
     'App\\Http\\Controllers\\ParcelaController' => $baseDir . '/app/Http/Controllers/ParcelaController.php',
     'App\\Http\\Controllers\\ProfileController' => $baseDir . '/app/Http/Controllers/ProfileController.php',
     'App\\Http\\Controllers\\ServicioController' => $baseDir . '/app/Http/Controllers/ServicioController.php',

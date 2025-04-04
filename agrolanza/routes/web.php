@@ -65,6 +65,8 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/maquinarias/nuevo'          , [MaquinariaController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('maquinarias.alta');
     Route::post('/maquinarias/nuevo'         , [MaquinariaController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('maquinarias.almacenar');
 
+    Route::get('maquinarias/pdf'             , [PDFController::class, 'pdf_maquinarias'])  ->name('maquinarias.pdf_maquinarias');
+    Route::get('/maquinaria/pdf/{id}'        , [PDFController::class, 'pdf_maquinaria'])   ->name('maquinarias.pdf_maquinaria');
 });
 
 
@@ -81,6 +83,8 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/fitosanitarios/nuevo'          , [FitosanitarioController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('fitosanitarios.alta');
     Route::post('/fitosanitarios/nuevo'         , [FitosanitarioController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('fitosanitarios.almacenar');
 
+    Route::get('fitosanitarios/pdf'             , [PDFController::class, 'pdf_fitosanitarios'])  ->name('fitosanitarios.pdf_fitosanitarios');
+    Route::get('/fitosanitario/pdf/{id}'        , [PDFController::class, 'pdf_fitosanitario'])   ->name('fitosanitarios.pdf_fitosanitario');
 });
 
 

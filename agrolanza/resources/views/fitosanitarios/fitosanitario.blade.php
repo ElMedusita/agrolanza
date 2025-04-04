@@ -6,6 +6,9 @@
 @section('title', 'Listado de productos fitosanitarios')
 
 @section('content')
+
+<h2>Fitosanitarios</h2>
+
 <div class="table-responsive">
     <table  class="table">
         <tr>
@@ -42,6 +45,7 @@
         @role(['admin', 'auxiliar'])
         <td>
             <div>
+                <a href="/fitosanitario/pdf/{{ $fitosanitario->id }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i></a>
                 <a href="/fitosanitario/{{ $fitosanitario->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
                 <a href="/fitosanitario/actualizar/{{ $fitosanitario->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                 <a href="/fitosanitario/eliminar/{{ $fitosanitario->id }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
@@ -55,7 +59,7 @@
     {{ $fitosanitarios->links() }}
 </div>
     @role('admin')
-    <a href="/fitosanitarios/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo fitosanitario</a>
+    <p><a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a> <a href="/fitosanitarios/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo fitosanitario</a> <a href="/fitosanitarios/pdf" class="btn btn-danger">Generar PDF</a></p>
     @endrole
 
 

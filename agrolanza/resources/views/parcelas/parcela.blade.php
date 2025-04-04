@@ -36,7 +36,7 @@
         @role(['admin', 'auxiliar'])
         <td>
             <div>
-            <a href="/parcela/pdf/{{ $parcela->id }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i></a>
+                <a href="/parcela/pdf/{{ $parcela->id }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i></a>
                 <a href="/parcela/{{ $parcela->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
                 <a href="/parcela/actualizar/{{ $parcela->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                 <a href="/parcela/eliminar/{{ $parcela->id }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>

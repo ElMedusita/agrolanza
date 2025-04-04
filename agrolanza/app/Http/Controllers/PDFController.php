@@ -7,6 +7,8 @@ use PDF;
 use App\Models\User;
 use App\Models\Cliente;
 use App\Models\Parcela;
+use App\Models\Maquinaria;
+use App\Models\Fitosanitario;
 
 class PDFController extends Controller
 {
@@ -59,4 +61,54 @@ class PDFController extends Controller
         $pdf = PDF::loadView('parcelas.pdf_parcela', ['parcela' => $parcela]);
         return $pdf->stream("parcela_{$parcela->id}.pdf");
     }
+
+
+    function pdf_maquinarias()
+    {
+    $maquinarias = Maquinaria::all();
+
+    $pdf = PDF::loadView('maquinarias.pdf_maquinarias', ['maquinarias' => $maquinarias])->setPaper('a4', 'landscape');
+    return $pdf->stream('maquinarias.pdf_maquinarias');
+    }
+
+    function pdf_maquinaria($id)
+    {
+        $maquinaria = Maquinaria::findOrFail($id);
+
+        $pdf = PDF::loadView('maquinarias.pdf_maquinaria', ['maquinaria' => $maquinaria]);
+        return $pdf->stream("maquinaria_{$maquinaria->id}.pdf");
+    }
+
+
+    function pdf_fitosanitarios()
+    {
+        $fitosanitarios = Fitosanitario::all();
+
+        $TIPOS     = Fitosanitario::TIPOS;
+        $ESTADOS   = Fitosanitario::ESTADOS;
+
+        $pdf = PDF::loadView('fitosanitarios.pdf_fitosanitarios', [
+            'fitosanitarios' => $fitosanitarios,
+            'TIPOS' => $TIPOS,
+            'ESTADOS' => $ESTADOS
+        ])->setPaper('a4', 'landscape');
+        return $pdf->stream('fitosanitarios.pdf_fitosanitarios');
+    }
+
+    function pdf_fitosanitario($id)
+    {
+        $fitosanitario = Fitosanitario::findOrFail($id);
+
+        $TIPOS   = Fitosanitario::TIPOS;
+        $ESTADOS = Fitosanitario::ESTADOS;
+
+        $pdf = PDF::loadView('fitosanitarios.pdf_fitosanitario', [
+            'fitosanitario' => $fitosanitario,
+            'TIPOS' => $TIPOS,
+            'ESTADOS' => $ESTADOS
+        ]);
+
+        return $pdf->stream("fitosanitario_{$fitosanitario->id}.pdf");
+    }
+
 }

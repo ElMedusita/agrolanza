@@ -29,7 +29,8 @@
                     <td style="border: 1px solid #ccc; padding: 8px;">{{ $parcela->referencia_catastral }}</td>
                     <td style="border: 1px solid #ccc; padding: 8px;">{{ $parcela->superficie }}</td>
                     <td style="border: 1px solid #ccc; padding: 8px;">{{ $parcela->latitud }}</td>
-                    <td style="border: 1px solid #ccc; padding: 8px;">{{ $parcela->longitud }}</td>                </tr>
+                    <td style="border: 1px solid #ccc; padding: 8px;">{{ $parcela->longitud }}</td>
+                </tr>
             @endforeach
             </tbody>
         </table>

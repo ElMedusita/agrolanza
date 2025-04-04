@@ -648,6 +648,7 @@ class ComposerStaticInit88970a0117c062eed55fa8728fc43833
         'App\\Http\\Controllers\\FitosanitarioController' => __DIR__ . '/../..' . '/app/Http/Controllers/FitosanitarioController.php',
         'App\\Http\\Controllers\\GestionServicioController' => __DIR__ . '/../..' . '/app/Http/Controllers/GestionServicioController.php',
         'App\\Http\\Controllers\\MaquinariaController' => __DIR__ . '/../..' . '/app/Http/Controllers/MaquinariaController.php',
+        'App\\Http\\Controllers\\PDFController' => __DIR__ . '/../..' . '/app/Http/Controllers/PDFController.php',
         'App\\Http\\Controllers\\ParcelaController' => __DIR__ . '/../..' . '/app/Http/Controllers/ParcelaController.php',
         'App\\Http\\Controllers\\ProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProfileController.php',
         'App\\Http\\Controllers\\ServicioController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServicioController.php',
