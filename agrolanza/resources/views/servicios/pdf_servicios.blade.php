@@ -15,6 +15,7 @@
         <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
             <thead>
                 <tr style="background-color: #f2f2f2;">
+                <th style="border: 1px solid #ccc; padding: 8px;"><b>ID servicio</b></th>
                     <th style="border: 1px solid #ccc; padding: 8px;"><b>Fecha y hora</b></th>
                     <th style="border: 1px solid #ccc; padding: 8px;"><b>Duración</b></th>
                     <th style="border: 1px solid #ccc; padding: 8px;"><b>Tipo de servicio</b></th>
@@ -28,8 +29,8 @@
             <tbody>
             @foreach ($servicios as $servicio)
                 <tr>
-                    <td style="border: 1px solid #ccc; padding: 8px;">{{ \Carbon\Carbon::parse($servicio->servicio)->format('d-m-Y') }} - {{ \Carbon\Carbon::parse($servicio->hora_servicio)->format('H:i') }}
-                    </td>
+                    <td style="border: 1px solid #ccc; padding: 8px;">{{ $servicio->id }}</td>
+                    <td style="border: 1px solid #ccc; padding: 8px;">{{ \Carbon\Carbon::parse($servicio->servicio)->format('d-m-Y') }} - {{ \Carbon\Carbon::parse($servicio->hora_servicio)->format('H:i') }}</td>
                     <td style="border: 1px solid #ccc; padding: 8px;">{{ $servicio->duracion }} horas</td>
                     <td style="border: 1px solid #ccc; padding: 8px;">{{ $TIPOS_SERVICIO[$servicio->tipo_servicio] }}</td>
                     <td style="border: 1px solid #ccc; padding: 8px;">{{ $servicio->parcela->referencia_catastral }}</td>

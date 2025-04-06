@@ -42,25 +42,31 @@
         <td>{{ $fitosanitario->dosis_maxima }} {{ $medida_fs }} / l</td> 
         <td>{{ $fitosanitario->plazo_seguridad }} días</td> 
 
-        @role(['admin', 'auxiliar'])
+        
         <td>
             <div>
                 <a href="/fitosanitario/pdf/{{ $fitosanitario->id }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i></a>
                 <a href="/fitosanitario/{{ $fitosanitario->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
+                @role(['admin', 'auxiliar'])
                 <a href="/fitosanitario/actualizar/{{ $fitosanitario->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                 <a href="/fitosanitario/eliminar/{{ $fitosanitario->id }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                @endrole
             </div>
         </td>
-        @endrole
+        
 
     @endforeach
 
     </table>
     {{ $fitosanitarios->links() }}
 </div>
-    @role('admin')
-    <p><a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a> <a href="/fitosanitarios/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo fitosanitario</a> <a href="/fitosanitarios/pdf" class="btn btn-danger">Generar PDF</a></p>
-    @endrole
-
-
+    
+    <p>
+        <a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a>
+        @role('admin|auxiliar')
+        <a href="/fitosanitarios/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo fitosanitario</a>
+        @endrole
+        <a href="/fitosanitarios/pdf" class="btn btn-danger">Generar PDF</a>
+    </p>
+    
 @endsection

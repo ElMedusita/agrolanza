@@ -21,7 +21,9 @@
                     <th>Nombre</th>
                     <th>Teléfono</th>
                     <th>Email</th>
+                    @role(['admin', 'auxiliar'])
                     <th></th>
+                    @endrole
                 </tr>
             </thead>
             <tbody>
@@ -31,6 +33,7 @@
                         <td>{{ $user->name }} {{ $user->apellidos }}</td>
                         <td>{{ $user->telefono }}</td>
                         <td>{{ $user->email }}</td>
+                        @role(['admin', 'auxiliar'])
                         <td>
                             <form action="{{ route('servicios.opciones.destroy.users', ['id_servicio' => $servicio->id, 'id_user' => $user->id]) }}" method="POST">
                                 @csrf
@@ -38,12 +41,13 @@
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
                         </td>
+                        @endrole
                     </tr>
                 @endforeach
             </tbody>
         </table>
     @endif
-
+    @role(['admin', 'auxiliar'])
     <form action="{{ route('servicios.opciones.store.users', ['id_servicio' => $servicio->id]) }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -56,6 +60,7 @@
         </div>
         <p><button type="submit" class="btn btn-primary">Agregar</button></p>
     </form>
+    @endrole
 </div>
 
 <div class="container table-responsive">
@@ -72,7 +77,9 @@
                     <th>Marca</th>
                     <th>Número de registro</th>
                     <th>Descripción</th>
+                    @role(['admin', 'auxiliar'])
                     <th></th>
+                    @endrole
                 </tr>
             </thead>
             <tbody>
@@ -82,20 +89,21 @@
                         <td>{{ $fitosanitario->marca }}</td>
                         <td>{{ $fitosanitario->numero_registro }}</td>
                         <td>{{ $fitosanitario->descripcion }}</td>
+                        @role(['admin', 'auxiliar'])
                         <td>
-                        <form action="{{ route('servicios.opciones.destroy.fitosanitarios', ['id_servicio' => $servicio->id, 'id_fitosanitario' => $fitosanitario->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-
+                            <form action="{{ route('servicios.opciones.destroy.fitosanitarios', ['id_servicio' => $servicio->id, 'id_fitosanitario' => $fitosanitario->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
                         </td>
+                        @endrole
                     </tr>
                 @endforeach
             </tbody>
         </table>
     @endif
-
+    @role(['admin', 'auxiliar'])
     <form action="{{ route('servicios.opciones.store.fitosanitarios', ['id_servicio' => $servicio->id]) }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -108,6 +116,7 @@
         </div>
         <p><button type="submit" class="btn btn-primary">Agregar</button></p>
     </form>
+    @endrole
 </div>
 
 <div class="container table-responsive">
@@ -124,7 +133,9 @@
                     <th>Matrícula</th>
                     <th>Marca</th>
                     <th>Descripción</th>
+                    @role(['admin', 'auxiliar'])
                     <th></th>
+                    @endrole
                 </tr>
             </thead>
             <tbody>
@@ -134,20 +145,21 @@
                         <td>{{ $maquinaria->matricula }}</td>
                         <td>{{ $maquinaria->marca }}</td>
                         <td>{{ $maquinaria->descripcion }}</td>
+                        @role(['admin', 'auxiliar'])
                         <td>
-                        <form action="{{ route('servicios.opciones.destroy.maquinarias', ['id_servicio' => $servicio->id, 'id_maquinaria' => $maquinaria->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
-
+                            <form action="{{ route('servicios.opciones.destroy.maquinarias', ['id_servicio' => $servicio->id, 'id_maquinaria' => $maquinaria->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
                         </td>
+                        @endrole
                     </tr>
                 @endforeach
             </tbody>
         </table>
     @endif
-
+    @role(['admin', 'auxiliar'])
     <form action="{{ route('servicios.opciones.store.maquinarias', ['id_servicio' => $servicio->id]) }}" method="POST">
         @csrf
         <div class="mb-3">
@@ -160,6 +172,7 @@
         </div>
         <p><button type="submit" class="btn btn-primary">Agregar</button></p>
     </form>
+    @endrole
 </div>
 
 

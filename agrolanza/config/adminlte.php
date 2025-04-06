@@ -324,12 +324,15 @@ return [
             'text' => 'Empleados',
             'url' => 'users/',
             'icon' => 'fas fa-fw fa-user',
+            'can'  => 'ver-empleados',
         ],
         [
             'text' => 'Clientes',
             'url' => 'clientes/',
             'icon' => 'fas fa-fw fa-user-friends',
+            'can'  => 'ver-clientes',
         ],
+        
         [
             'text' => 'Parcelas',
             'url' => 'parcelas/',

@@ -33,25 +33,33 @@
         <td>{{ $parcela->latitud }}</td> 
         <td>{{ $parcela->longitud }}</td>
         
-        @role(['admin', 'auxiliar'])
+        
         <td>
             <div>
                 <a href="/parcela/pdf/{{ $parcela->id }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i></a>
                 <a href="/parcela/{{ $parcela->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
+                @role(['admin', 'auxiliar'])
                 <a href="/parcela/actualizar/{{ $parcela->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                 <a href="/parcela/eliminar/{{ $parcela->id }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
+                @endrole
             </div>
         </td>
-        @endrole
+        
 
     @endforeach
 
     </table>
     {{ $parcelas->links() }}
 </div>
-    @role('admin')
-    <p><a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a> <a href="/parcelas/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nueva parcela</a> <a href="/parcelas/pdf" class="btn btn-danger">Generar PDF</a></p>
-    @endrole
+    
+    <p>
+        <a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a>
+        @role('admin')
+        <a href="/parcelas/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nueva parcela</a>
+        @endrole
+        <a href="/parcelas/pdf" class="btn btn-danger">Generar PDF</a>
+    </p>
+    
 
 
 @endsection

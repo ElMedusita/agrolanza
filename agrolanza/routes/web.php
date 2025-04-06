@@ -56,17 +56,18 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
  ## Maquinarias ##
 #################
 
-Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
-
+Route::middleware(['auth', 'role:admin|auxiliar|aplicador|conductor'])->group(function () {
     Route::get('/maquinarias'                , [MaquinariaController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('maquinarias.listado');
     Route::get('/maquinaria/{id}'            , [MaquinariaController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('maquinarias.mostrar');
+    Route::get('maquinarias/pdf'             , [PDFController::class, 'pdf_maquinarias'])  ->name('maquinarias.pdf_maquinarias');
+    Route::get('/maquinaria/pdf/{id}'        , [PDFController::class, 'pdf_maquinaria'])   ->name('maquinarias.pdf_maquinaria');
+});
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/maquinaria/actualizar/{id}' , [MaquinariaController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('maquinarias.actualizar');
     Route::get('/maquinaria/eliminar/{id}'   , [MaquinariaController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('maquinarias.eliminar');
     Route::get('/maquinarias/nuevo'          , [MaquinariaController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('maquinarias.alta');
     Route::post('/maquinarias/nuevo'         , [MaquinariaController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('maquinarias.almacenar');
-
-    Route::get('maquinarias/pdf'             , [PDFController::class, 'pdf_maquinarias'])  ->name('maquinarias.pdf_maquinarias');
-    Route::get('/maquinaria/pdf/{id}'        , [PDFController::class, 'pdf_maquinaria'])   ->name('maquinarias.pdf_maquinaria');
 });
 
 
@@ -74,17 +75,18 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
  ## Fitosanitarios ##
 ####################
 
-Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
-
+Route::middleware(['auth', 'role:admin|auxiliar|aplicador|conductor'])->group(function () {
     Route::get('/fitosanitarios'                , [FitosanitarioController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('fitosanitarios.listado');
     Route::get('/fitosanitario/{id}'            , [FitosanitarioController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('fitosanitarios.mostrar');
+    Route::get('fitosanitarios/pdf'             , [PDFController::class, 'pdf_fitosanitarios'])  ->name('fitosanitarios.pdf_fitosanitarios');
+    Route::get('/fitosanitario/pdf/{id}'        , [PDFController::class, 'pdf_fitosanitario'])   ->name('fitosanitarios.pdf_fitosanitario');
+});
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/fitosanitario/actualizar/{id}' , [FitosanitarioController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('fitosanitarios.actualizar');
     Route::get('/fitosanitario/eliminar/{id}'   , [FitosanitarioController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('fitosanitarios.eliminar');
     Route::get('/fitosanitarios/nuevo'          , [FitosanitarioController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('fitosanitarios.alta');
     Route::post('/fitosanitarios/nuevo'         , [FitosanitarioController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('fitosanitarios.almacenar');
-
-    Route::get('fitosanitarios/pdf'             , [PDFController::class, 'pdf_fitosanitarios'])  ->name('fitosanitarios.pdf_fitosanitarios');
-    Route::get('/fitosanitario/pdf/{id}'        , [PDFController::class, 'pdf_fitosanitario'])   ->name('fitosanitarios.pdf_fitosanitario');
 });
 
 
@@ -111,17 +113,18 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
  ## Parcelas ##
 ##############
 
-Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
-
+Route::middleware(['auth', 'role:admin|auxiliar|aplicador|conductor'])->group(function () {
     Route::get('/parcelas'                , [ParcelaController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('parcelas.listado');
     Route::get('/parcela/{id}'            , [ParcelaController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('parcelas.mostrar');
+    Route::get('parcelas/pdf'             , [PDFController::class, 'pdf_parcelas'])  ->name('parcelas.pdf_parcelas');
+    Route::get('/parcela/pdf/{id}'        , [PDFController::class, 'pdf_parcela'])   ->name('parcelas.pdf_parcela');
+});
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/parcela/actualizar/{id}' , [ParcelaController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('parcelas.actualizar');
     Route::get('/parcela/eliminar/{id}'   , [ParcelaController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('parcelas.eliminar');
     Route::get('/parcelas/nuevo'          , [ParcelaController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('parcelas.alta');
     Route::post('/parcelas/nuevo'         , [ParcelaController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('parcelas.almacenar');
-
-    Route::get('parcelas/pdf'             , [PDFController::class, 'pdf_parcelas'])  ->name('parcelas.pdf_parcelas');
-    Route::get('/parcela/pdf/{id}'        , [PDFController::class, 'pdf_parcela'])   ->name('parcelas.pdf_parcela');
 });
 
 
@@ -129,28 +132,30 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
  ## Servicios ##
 ###############
 
-Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
+Route::middleware(['auth', 'role:admin|auxiliar|aplicador|conductor'])->group(function () {
 
     Route::get('/servicios'                , [ServicioController::class, 'listado'])   ->middleware(['auth', 'verified'])->name('servicios.listado');
     Route::get('/servicio/{id}'            , [ServicioController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('servicios.mostrar');
+    Route::get('servicios/pdf'             , [PDFController::class, 'pdf_servicios'])  ->name('servicios.pdf_servicios');
+    Route::get('/servicio/pdf/{id}'        , [PDFController::class, 'pdf_servicio'])   ->name('servicios.pdf_servicio');
+});
+
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/servicio/actualizar/{id}' , [ServicioController::class, 'actualizar'])->middleware(['auth', 'verified'])->name('servicios.actualizar');
     Route::get('/servicio/eliminar/{id}'   , [ServicioController::class, 'eliminar'])  ->middleware(['auth', 'verified'])->name('servicios.eliminar');
     Route::get('/servicios/nuevo'          , [ServicioController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('servicios.alta');
     Route::post('/servicios/nuevo'         , [ServicioController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('servicios.almacenar');
-
-    Route::get('servicios/pdf'             , [PDFController::class, 'pdf_servicios'])  ->name('servicios.pdf_servicios');
-    Route::get('/servicio/pdf/{id}'        , [PDFController::class, 'pdf_servicio'])   ->name('servicios.pdf_servicio');
-
 });
 
   ############################
  ## Gestiones de servicios ##
 ############################
 
-Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
-
+Route::middleware(['auth', 'role:admin|auxiliar|aplicador|conductor'])->group(function () {
     Route::get('/servicios/{id}/opciones', [GestionServicioController::class, 'index'])->name('servicio.opciones');
+});
 
+Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     #Empleados
     Route::post('/servicios/{id_servicio}/opciones', [GestionServicioController::class, 'store_user'])->name('servicios.opciones.store.users');
     Route::delete('/servicios/{id_servicio}/opciones/{id_user}', [GestionServicioController::class, 'destroy_user'])->name('servicios.opciones.destroy.users');
@@ -162,7 +167,6 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     #Maquinarias
     Route::post('/servicios/{id_servicio}/maquinarias', [GestionServicioController::class, 'store_maquinaria'])->name('servicios.opciones.store.maquinarias');
     Route::delete('/servicios/{id_servicio}/maquinarias/{id_maquinaria}', [GestionServicioController::class, 'destroy_maquinaria'])->name('servicios.opciones.destroy.maquinarias');
-
 });
 
 require __DIR__.'/auth.php';
