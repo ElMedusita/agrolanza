@@ -6,6 +6,9 @@
 @section('title', 'Listado de servicios')
 
 @section('content')
+
+<h2>Servicios</h2>
+
 <div class="table-responsive">
     <table  class="table">
         <tr>
@@ -40,6 +43,7 @@
         @role(['admin', 'auxiliar'])
         <td>
             <div>
+                <a href="/servicio/pdf/{{ $servicio->id }}" class="btn btn-danger"><i class="bi bi-file-earmark-pdf"></i></a>
                 <a href="/servicio/{{ $servicio->id }}" class="btn btn-primary"><i class="bi bi-search"></i></a>
                 <a href="/servicio/actualizar/{{ $servicio->id }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                 <a href="/servicio/eliminar/{{ $servicio->id }}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
@@ -53,7 +57,7 @@
     {{ $servicios->links() }}
 </div>
     @role('admin')
-    <a href="/servicios/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo servicio</a>
+    <p><a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a> <a href="/servicios/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo servicio</a> <a href="/servicios/pdf" class="btn btn-danger">Generar PDF</a></p>
     @endrole
 
 <script src="{{ asset('js/styles/estado_pago.js') }}"></script>

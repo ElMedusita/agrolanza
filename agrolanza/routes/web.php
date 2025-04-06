@@ -138,6 +138,9 @@ Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
     Route::get('/servicios/nuevo'          , [ServicioController::class, 'alta'])      ->middleware(['auth', 'verified'])->name('servicios.alta');
     Route::post('/servicios/nuevo'         , [ServicioController::class, 'almacenar']) ->middleware(['auth', 'verified'])->name('servicios.almacenar');
 
+    Route::get('servicios/pdf'             , [PDFController::class, 'pdf_servicios'])  ->name('servicios.pdf_servicios');
+    Route::get('/servicio/pdf/{id}'        , [PDFController::class, 'pdf_servicio'])   ->name('servicios.pdf_servicio');
+
 });
 
   ############################

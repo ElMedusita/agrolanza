@@ -9,6 +9,7 @@ use App\Models\Cliente;
 use App\Models\Parcela;
 use App\Models\Maquinaria;
 use App\Models\Fitosanitario;
+use App\Models\Servicio;
 
 class PDFController extends Controller
 {
@@ -111,4 +112,39 @@ class PDFController extends Controller
         return $pdf->stream("fitosanitario_{$fitosanitario->id}.pdf");
     }
 
+
+    function pdf_servicios()
+    {
+        $servicios = Servicio::all();
+
+        $TIPOS_SERVICIO     = Servicio::TIPOS_SERVICIO;
+        $METODOS_PAGO       = Servicio::METODOS_PAGO;
+        $ESTADOS            = Servicio::ESTADOS;
+
+        $pdf = PDF::loadView('servicios.pdf_servicios', [
+            'servicios' => $servicios,
+            'TIPOS_SERVICIO' => $TIPOS_SERVICIO,
+            'METODOS_PAGO' => $METODOS_PAGO,
+            'ESTADOS' => $ESTADOS
+        ])->setPaper('a4', 'landscape');
+        return $pdf->stream('servicios.pdf_servicios');
+    }
+
+    function pdf_servicio($id)
+    {
+        $servicio = Servicio::findOrFail($id);
+
+        $TIPOS_SERVICIO     = Servicio::TIPOS_SERVICIO;
+        $METODOS_PAGO       = Servicio::METODOS_PAGO;
+        $ESTADOS            = Servicio::ESTADOS;
+
+        $pdf = PDF::loadView('servicios.pdf_servicio', [
+            'servicio' => $servicio,
+            'TIPOS_SERVICIO' => $TIPOS_SERVICIO,
+            'METODOS_PAGO' => $METODOS_PAGO,
+            'ESTADOS' => $ESTADOS
+        ]);
+
+        return $pdf->stream("servicio_{$servicio->id}.pdf");
+    }
 }
