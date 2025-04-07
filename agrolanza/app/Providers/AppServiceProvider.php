@@ -23,13 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         $router->aliasMiddleware('role', \Spatie\Permission\Middleware\RoleMiddleware::class);
-
-        Gate::define('ver-empleados', function ($user) {
-            return in_array($user->role, ['admin', 'auxiliar']);
-        });
-    
-        Gate::define('ver-clientes', function ($user) {
-            return in_array($user->role, ['admin', 'auxiliar']);
-        });
+        Gate::define('admin', fn ($user) => $user->hasRole('admin'));
+        Gate::define('auxiliar', fn ($user) => $user->hasRole('auxiliar'));
     }
 }

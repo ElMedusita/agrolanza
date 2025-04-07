@@ -300,11 +300,11 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+/*         [
             'type' => 'navbar-search',
             'text' => 'Buscar',
             'topnav_right' => true,
-        ],
+        ], */
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
@@ -324,13 +324,13 @@ return [
             'text' => 'Empleados',
             'url' => 'users/',
             'icon' => 'fas fa-fw fa-user',
-            'can'  => 'ver-empleados',
+            'can' => ['admin'],
         ],
         [
             'text' => 'Clientes',
             'url' => 'clientes/',
             'icon' => 'fas fa-fw fa-user-friends',
-            'can'  => 'ver-clientes',
+            'can' => ['admin', 'auxiliar'],
         ],
         
         [
@@ -359,11 +359,11 @@ return [
             'url' => '/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
+/*         [
             'text' => 'Cambiar contraseña',
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ], */
         /* [
             'text' => 'multilevel',
             'icon' => 'fas fa-fw fa-share',
