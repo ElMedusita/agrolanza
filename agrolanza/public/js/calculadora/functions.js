@@ -6,7 +6,7 @@ $(document).ready(function () {
         const volumenDeposito = parseFloat($('#volumen-deposito').val());
 
         let cantidadProducto = 0;
-        let unidadResultado = ''; // Para mostrar unidad final
+        let unidadResultado = '';
 
         switch (unidad) {
             case 'cc/L':
