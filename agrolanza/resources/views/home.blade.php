@@ -10,39 +10,37 @@
 </div>
 
 <pre></pre>
-    <!-- Servicios y Actividades -->
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Consulta de servicios agrarios</h5>
-                    <p class="card-text">Visualización y exportación de información: Maquinarias, productos fitosanitarios, servicios a parcelas.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Gestión de datos centralizada</h5>
-                    <p class="card-text">Integridad, disponibilidad y confidencialidad de datos para personal autorizado.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Consulta de productos fitosanitarios</h5>
-                    <p class="card-text">Sección con información detallada, y herramienta de cálculo de dosis y otros datos de interés en ámbito fitosanitario.</p>
-                </div>
+<!-- Servicios y Actividades -->
+<div class="row" style="margin: 5%;">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Consulta de servicios agrarios</h5>
+                <p class="card-text">Visualización y exportación de información: Maquinarias, productos fitosanitarios, servicios a parcelas.</p>
             </div>
         </div>
     </div>
-    <div class="welcome-container">
-        <div class="overlay"></div> <!-- Capa oscura para mejorar la legibilidad -->
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Gestión de datos centralizada</h5>
+                <p class="card-text">Integridad, disponibilidad y confidencialidad de datos para personal autorizado.</p>
+            </div>
         </div>
     </div>
-
-<pre></pre>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Consulta de productos fitosanitarios</h5>
+                <p class="card-text">Sección con información detallada, y herramienta de cálculo de dosis y otros datos de interés en ámbito fitosanitario.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="welcome-container">
+    <div class="overlay"></div> <!-- Capa oscura para mejorar la legibilidad -->
+    </div>
+</div>
 
 <!-- Contenedor principal con flexbox -->
 <div class="d-flex flex-wrap justify-content-between mt-4">
@@ -76,8 +74,9 @@
     <style>
         .welcome-container {
             position: relative;
-            width: 100%;
-            height: 100vh;
+            margin: 5%;
+            width: 90%;
+            height: 80vh;
             background: url('{{ asset('img/fondo_inicio.jpg') }}') no-repeat center center/cover;
             display: flex;
             align-items: center;
