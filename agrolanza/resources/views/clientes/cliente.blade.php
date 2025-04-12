@@ -49,9 +49,15 @@
     </table>
     {{ $clientes->links() }}
 </div>
-    @role('admin')
-    <p><a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a> <a href="/clientes/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo cliente</a> <a href="/clientes/pdf" class="btn btn-danger">Generar PDF</a></p>
-    @endrole
+    
+    <p>
+        <a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a>
+        @role(['admin', 'auxiliar'])
+        <a href="/clientes/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo cliente</a>
+        @endrole
+        <a href="/clientes/pdf" class="btn btn-danger">Generar PDF</a>
+    </p>
+    
 
 
 @endsection

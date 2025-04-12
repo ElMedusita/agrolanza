@@ -1,170 +1,135 @@
- 
-DROP TABLE clientes;
+CREATE TABLE users (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    identificacion CHAR(10) UNIQUE,
+    name VARCHAR(30),
+    apellidos VARCHAR(60),
+    email VARCHAR(40) UNIQUE,
+    telefono CHAR(12),
+    direccion VARCHAR(150),
+    localidad VARCHAR(50),
+    codigo_postal CHAR(5),
+    iban CHAR(24),
+    fecha_nacimiento DATE,
+    fecha_comienzo DATE,
+    fecha_fin DATE NULL,
+    password VARCHAR(255),
+    remember_token VARCHAR(100) NULL,
+    ip_alta VARCHAR(15) NULL,
+    ip_ult_mod VARCHAR(15) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL
+);
 
 CREATE TABLE clientes (
-    id                  int not null auto_increment primary key,
-    identificacion      char(10) UNIQUE,
-    nombre              varchar(30) not null,
-    apellidos           varchar(60) not null,
-    email               varchar(40),
-    telefono            char(12) not null,
-    codigo_postal       char(5) not null,
-
-    ip_alta            VARCHAR(15),
-    fecha_alta         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod         VARCHAR(15),
-    fecha_ult_mod      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    identificacion CHAR(10) UNIQUE,
+    nombre VARCHAR(30),
+    apellidos VARCHAR(60),
+    email VARCHAR(40) NULL,
+    telefono CHAR(12),
+    codigo_postal CHAR(5),
+    ip_alta VARCHAR(15) NULL,
+    ip_ult_mod VARCHAR(15) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL
 );
-
-DROP TABLE users;
-
-CREATE TABLE users (
-    id                  int not null auto_increment primary key,
-    identificacion      char(10) UNIQUE,
-    nombre              varchar(30) not null,
-    apellidos           varchar(60) not null,
-    email               varchar(40) not null,
-    telefono            char(12) not null,
-    codigo_postal       char(5) not null,
-    iban                char(24) not null,
-    fecha_nacimiento    timestamp,
-
-    ip_alta            VARCHAR(15),
-    fecha_alta         TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod         VARCHAR(15),
-    fecha_ult_mod      TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-DROP TABLE parcelas;
 
 CREATE TABLE parcelas (
-    id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_cliente          INT NOT NULL,
-    referencia_catastral CHAR(14) NOT NULL,
-    superficie          DECIMAL(7,2) NOT NULL,
-    latitud             DECIMAL(9,6) NOT NULL,
-    longitud            DECIMAL(10,6) NOT NULL,
-    
-    ip_alta             VARCHAR(15),
-    fecha_alta          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod          VARCHAR(15),
-    fecha_ult_mod       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_cliente BIGINT UNSIGNED,
+    referencia_catastral CHAR(20) UNIQUE,
+    superficie INT UNSIGNED,
+    latitud DECIMAL(10, 6),
+    longitud DECIMAL(10, 6),
+    ip_alta VARCHAR(15) NULL,
+    ip_ult_mod VARCHAR(15) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL,
     FOREIGN KEY (id_cliente) REFERENCES clientes(id)
 );
-
-DROP TABLE fitosanitarios;
-
-CREATE TABLE fitosanitarios (
-    id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    nombre              varchar(29) NOT NULL,
-    marca               varchar(29) NOT NULL,
-    tipo                char(2) not null,
-    descripcion         VARCHAR(60) NOT NULL,
-    entidad_vendedora   varchar(40) NOT NULL,
-    materia_activa      varchar(30) NOT NULL,
-    dosis_maxima        decimal(5,2) NOT NULL,
-
-    ip_alta             VARCHAR(15),
-    fecha_alta          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod          VARCHAR(15),
-    fecha_ult_mod       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-);
-
-DROP TABLE maquinarias;
 
 CREATE TABLE maquinarias (
-    id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    numero_serie        varchar(14) NOT NULL,
-    matricula           char(10) NOT NULL,
-    marca               varchar(20) NOT NULL,
-    descripcion         VARCHAR(60) NOT NULL,
-
-    ip_alta             VARCHAR(15),
-    fecha_alta          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod          VARCHAR(15),
-    fecha_ult_mod       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    numero_serie VARCHAR(20),
+    matricula CHAR(10),
+    marca VARCHAR(20),
+    descripcion VARCHAR(200),
+    ip_alta VARCHAR(45) NULL,
+    ip_ult_mod VARCHAR(45) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL
 );
 
-DROP TABLE servicios;
+CREATE TABLE fitosanitarios (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(29),
+    marca VARCHAR(29),
+    numero_registro VARCHAR(29),
+    tipo CHAR(2),
+    estado CHAR(2),
+    descripcion VARCHAR(200),
+    entidad_vendedora VARCHAR(40),
+    materia_activa VARCHAR(30),
+    cantidad_materia_activa DECIMAL(5, 2),
+    dosis_maxima DECIMAL(5, 2),
+    plazo_seguridad INT,
+    observaciones VARCHAR(200) NULL,
+    ip_alta VARCHAR(15) NULL,
+    ip_ult_mod VARCHAR(15) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL
+);
 
 CREATE TABLE servicios (
-    id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    tipo_servicio       char(2) NOT NULL,
-    descripcion         VARCHAR(60),
-    metodo_pago         char(2) NOT NULL,
-    fecha_servicio      TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    hora_servicio       TIME NOT NULL,
-    presupuesto         decimal(7,2) NOT NULL,
-    forma_pago          char(2) NOT NULL,
-    estado            char(1) NOT NULL,
-    
-    id_cliente          INT NOT NULL,
-    
-
-    ip_alta             VARCHAR(15),
-    fecha_alta          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod          VARCHAR(15),
-    fecha_ult_mod       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (id_cliente) REFERENCES clientes(id)
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    tipo_servicio ENUM('CP', 'CM', 'SC', 'SS'),
+    descripcion VARCHAR(60),
+    fecha_servicio DATE,
+    hora_servicio TIME,
+    duracion INT,
+    presupuesto DECIMAL(7, 2),
+    metodo_pago ENUM('EF', 'TA', 'TR'),
+    estado ENUM('P', 'N'),
+    id_parcela BIGINT UNSIGNED,
+    ip_alta VARCHAR(15) NULL,
+    ip_ult_mod VARCHAR(15) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL,
+    FOREIGN KEY (id_parcela) REFERENCES parcelas(id)
 );
 
-DROP TABLE servicios_trabajadores;
-
-CREATE TABLE servicios_trabajadores (
-    id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_servicio         int NOT NULL,
-    id_trabajador       int NOT NULL,
-
-    ip_alta             VARCHAR(15),
-    fecha_alta          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod          VARCHAR(15),
-    fecha_ult_mod       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (id_servicio) REFERENCES servicios(id),
-    FOREIGN KEY (id_trabajador) REFERENCES trabajadores(id)
+CREATE TABLE servicios_users (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_servicio BIGINT UNSIGNED,
+    id_user BIGINT UNSIGNED,
+    ip_alta VARCHAR(15) NULL,
+    ip_ult_mod VARCHAR(15) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL,
+    FOREIGN KEY (id_servicio) REFERENCES servicios(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE
 );
-
-
-DROP TABLE servicios_maquinarias;
 
 CREATE TABLE servicios_maquinarias (
-    id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_servicio         int NOT NULL,
-    id_maquinaria       int NOT NULL,
-
-    ip_alta             VARCHAR(15),
-    fecha_alta          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod          VARCHAR(15),
-    fecha_ult_mod       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (id_servicio) REFERENCES servicios(id),
-    FOREIGN KEY (id_maquinaria) REFERENCES maquinarias(id)
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_servicio BIGINT UNSIGNED,
+    id_maquinaria BIGINT UNSIGNED,
+    ip_alta VARCHAR(15) NULL,
+    ip_ult_mod VARCHAR(15) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL,
+    FOREIGN KEY (id_servicio) REFERENCES servicios(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_maquinaria) REFERENCES maquinarias(id) ON DELETE CASCADE
 );
 
-
-DROP TABLE servicios_fitosanitarios;
-
 CREATE TABLE servicios_fitosanitarios (
-    id                  INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    id_servicio         int NOT NULL,
-    id_fitosanitario    int NOT NULL,
-
-    ip_alta             VARCHAR(15),
-    fecha_alta          TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    ip_ult_mod          VARCHAR(15),
-    fecha_ult_mod       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-    FOREIGN KEY (id_servicio) REFERENCES servicios(id),
-    FOREIGN KEY (id_fitosanitario) REFERENCES fitosanitarios(id)
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    id_servicio BIGINT UNSIGNED,
+    id_fitosanitario BIGINT UNSIGNED,
+    ip_alta VARCHAR(15) NULL,
+    ip_ult_mod VARCHAR(15) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL,
+    FOREIGN KEY (id_servicio) REFERENCES servicios(id) ON DELETE CASCADE,
+    FOREIGN KEY (id_fitosanitario) REFERENCES fitosanitarios(id) ON DELETE CASCADE
 );

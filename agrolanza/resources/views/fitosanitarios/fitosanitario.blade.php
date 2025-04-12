@@ -67,6 +67,7 @@
         <a href="/fitosanitarios/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nuevo fitosanitario</a>
         @endrole
         <a href="/fitosanitarios/pdf" class="btn btn-danger">Generar PDF</a>
+        <a href="{{ url('/fitosanitarios/calculadora') }}" class="btn btn-primary">Calculadora</a>
     </p>
     
 @endsection

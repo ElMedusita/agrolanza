@@ -13,7 +13,7 @@ class ServicioController extends Controller
 {
     function listado()
     {
-        $servicios = Servicio::with('parcela')->paginate(10);
+        $servicios = Servicio::with('parcela')->orderBy('fecha_servicio', 'desc')->orderBy('hora_servicio', 'desc')->paginate(10);
 
         $TIPOS_SERVICIO = Servicio::TIPOS_SERVICIO;
         $METODOS_PAGO   = Servicio::METODOS_PAGO;

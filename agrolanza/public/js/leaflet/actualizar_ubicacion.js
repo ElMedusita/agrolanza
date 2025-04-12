@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    var latitud = parseFloat(document.getElementById("latitud").value) || 28.99;
-    var longitud = parseFloat(document.getElementById("longitud").value) || -13.54;
+    var latitud = parseFloat(document.getElementById("latitud").value) || 29.015526;
+    var longitud = parseFloat(document.getElementById("longitud").value) || -13.614990;
 
     var map = L.map('show_map').setView([latitud, longitud], 15);
 

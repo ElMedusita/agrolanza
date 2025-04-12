@@ -54,10 +54,11 @@
     
     <p>
         <a href="{{ url('/home') }}" class="btn btn-secondary">Volver</a>
-        @role('admin')
+        @role(['admin', 'auxiliar'])
         <a href="/parcelas/nuevo" class="btn btn-success"><i class="bi bi-plus"></i> Nueva parcela</a>
         @endrole
         <a href="/parcelas/pdf" class="btn btn-danger">Generar PDF</a>
+        <a href="{{ url('/parcelas/mapa') }}" class="btn btn-primary">Consultar mapa</a>
     </p>
     
 

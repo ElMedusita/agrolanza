@@ -80,6 +80,9 @@ Route::middleware(['auth', 'role:admin|auxiliar|aplicador|conductor'])->group(fu
     Route::get('/fitosanitario/{id}'            , [FitosanitarioController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('fitosanitarios.mostrar');
     Route::get('fitosanitarios/pdf'             , [PDFController::class, 'pdf_fitosanitarios'])  ->name('fitosanitarios.pdf_fitosanitarios');
     Route::get('/fitosanitario/pdf/{id}'        , [PDFController::class, 'pdf_fitosanitario'])   ->name('fitosanitarios.pdf_fitosanitario');
+    Route::get('/fitosanitarios/calculadora', function () {
+        return view('fitosanitarios.calculadora');})
+        ->name('fitosanitarios.calculadora');
 });
 
 Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
@@ -118,6 +121,9 @@ Route::middleware(['auth', 'role:admin|auxiliar|aplicador|conductor'])->group(fu
     Route::get('/parcela/{id}'            , [ParcelaController::class, 'mostrar'])   ->middleware(['auth', 'verified'])->name('parcelas.mostrar');
     Route::get('parcelas/pdf'             , [PDFController::class, 'pdf_parcelas'])  ->name('parcelas.pdf_parcelas');
     Route::get('/parcela/pdf/{id}'        , [PDFController::class, 'pdf_parcela'])   ->name('parcelas.pdf_parcela');
+    Route::get('/parcelas/mapa', function () {
+        return view('parcelas.mapa');})
+        ->name('parcelas.mapa');
 });
 
 Route::middleware(['auth', 'role:admin|auxiliar'])->group(function () {
