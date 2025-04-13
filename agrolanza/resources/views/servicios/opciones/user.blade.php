@@ -12,7 +12,7 @@
     <h3>Empleados</h3>
 
     @if ($servicio->users->isEmpty())
-        <p>No hay usuarios asociados a este servicio.</p>
+        <p>No hay empleados asociados a este servicio.</p>
     @else
         <table class="table">
             <thead>
@@ -51,7 +51,7 @@
     <form action="{{ route('servicios.opciones.store.users', ['id_servicio' => $servicio->id]) }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="id_user" class="form-label">Agregar usuario</label>
+            <label for="id_user" class="form-label">Agregar empleado</label>
             <select name="id_user" id="id_user" class="form-control">
                 @foreach ($users_disponibles as $usuario)
                     <option value="{{ $usuario->id }}">{{ $usuario->name }} {{ $usuario->apellidos }}</option>
