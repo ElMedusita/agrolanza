@@ -47,6 +47,7 @@ Agrolanza es un sistema centralizado para la gestión de servicios agrícolas, d
     composer require jeroennoten/laravel-adminlte
     composer require spatie/laravel-permission
     composer require barryvdh/laravel-dompdf
+    composer require pestphp/pest --dev
 
 5. Copia el archivo .env.example y configúralo a una base de datos:
 
