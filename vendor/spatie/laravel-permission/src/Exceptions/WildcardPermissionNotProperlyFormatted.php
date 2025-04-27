@@ -8,6 +8,6 @@ class WildcardPermissionNotProperlyFormatted extends InvalidArgumentException
 {
     public static function create(string $permission)
     {
-        return new static("Wildcard permission `{$permission}` is not properly formatted.");
+        return new static("El permiso wildcard `{$permission}` no está correctamente formateado.");
     }
 }

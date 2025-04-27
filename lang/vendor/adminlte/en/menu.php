@@ -2,18 +2,24 @@
 
 return [
 
-    'main_navigation' => 'MAIN NAVIGATION',
+    'main_navigation' => 'MAIN MENU',
     'blog' => 'Blog',
     'pages' => 'Pages',
-    'account_settings' => 'ACCOUNT SETTINGS',
-    'profile' => 'Profile',
-    'change_password' => 'Change Password',
+
     'multilevel' => 'Multi Level',
-    'level_one' => 'Level 1',
-    'level_two' => 'Level 2',
-    'level_three' => 'Level 3',
     'labels' => 'LABELS',
     'important' => 'Important',
     'warning' => 'Warning',
     'information' => 'Information',
+
+    'workers' => 'Workers',
+    'clients' => 'Clients',
+    'plots' => 'Plots',
+    'services' => 'Services',
+    'machinery' => 'Machinery',
+    'phytosanitary' => 'Phytosanitary',
+    'account_settings' => 'ACCOUNT SETTINGS',
+    'profile' => 'Profile',
+    'change_password' => 'Change Password',
+
 ];

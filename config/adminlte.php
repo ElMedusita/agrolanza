@@ -300,11 +300,6 @@ return [
 
     'menu' => [
         // Navbar items:
-/*         [
-            'type' => 'navbar-search',
-            'text' => 'Buscar',
-            'topnav_right' => true,
-        ], */
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
@@ -315,110 +310,57 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'Buscar',
         ],
+        ['header' => 'main_navigation'],
         [
-            'text' => 'blog',
+            'text' => 'Blog',
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'Empleados',
+            'text' => 'workers',
             'url' => 'users/',
             'icon' => 'fas fa-fw fa-user',
             'can' => ['admin'],
         ],
         [
-            'text' => 'Clientes',
+            'text' => 'clients',
             'url' => 'clientes/',
             'icon' => 'fas fa-fw fa-user-friends',
             'can' => ['admin', 'auxiliar'],
         ],
-        
         [
-            'text' => 'Parcelas',
+            'text' => 'plots',
             'url' => 'parcelas/',
             'icon' => 'fas fa-fw fa-map-marker-alt',
         ],
         [
-            'text' => 'Servicios',
+            'text' => 'services',
             'url' => 'servicios/',
             'icon' => 'fas fa-fw fa-tools',
         ],
         [
-            'text' => 'Maquinarias',
+            'text' => 'machinery',
             'url' => 'maquinarias/',
             'icon' => 'fas fa-fw fa-cogs',
         ],
         [
-            'text' => 'Fitosanitarios',
+            'text' => 'phytosanitary',
             'url' => 'fitosanitarios/',
             'icon' => 'fas fa-fw fa-leaf',
         ],
-        ['header' => 'Configuración de cuenta'],
+        ['header' => 'account_settings'],
         [
-            'text' => 'Perfil',
+            'text' => 'profile',
             'url' => '/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-/*         [
-            'text' => 'Cambiar contraseña',
-            'url' => 'admin/settings',
+        [
+            'text' => 'change_password',
+            'url' => '/profile/password',
             'icon' => 'fas fa-fw fa-lock',
-        ], */
-        /* [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-            ],
         ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
-        ],*/
-    ], 
+    ],
+
 
     /*
     |--------------------------------------------------------------------------

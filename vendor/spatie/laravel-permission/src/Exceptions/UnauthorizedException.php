@@ -13,10 +13,10 @@ class UnauthorizedException extends HttpException
 
     public static function forRoles(array $roles): self
     {
-        $message = 'User does not have the right roles.';
+        $message = 'El usuario no tiene los roles adecuados.';
 
         if (config('permission.display_role_in_exception')) {
-            $message .= ' Necessary roles are '.implode(', ', $roles);
+            $message .= ' Los roles necesarios son '.implode(', ', $roles);
         }
 
         $exception = new static(403, $message, null, []);
@@ -27,10 +27,10 @@ class UnauthorizedException extends HttpException
 
     public static function forPermissions(array $permissions): self
     {
-        $message = 'User does not have the right permissions.';
+        $message = 'El usuario no tiene los permisos adecuados.';
 
         if (config('permission.display_permission_in_exception')) {
-            $message .= ' Necessary permissions are '.implode(', ', $permissions);
+            $message .= ' Los permisos necesarios son '.implode(', ', $permissions);
         }
 
         $exception = new static(403, $message, null, []);
@@ -41,10 +41,10 @@ class UnauthorizedException extends HttpException
 
     public static function forRolesOrPermissions(array $rolesOrPermissions): self
     {
-        $message = 'User does not have any of the necessary access rights.';
+        $message = 'El usuario no tiene ninguno de los derechos de acceso necesarios.';
 
         if (config('permission.display_permission_in_exception') && config('permission.display_role_in_exception')) {
-            $message .= ' Necessary roles or permissions are '.implode(', ', $rolesOrPermissions);
+            $message .= ' Los roles o permisos necesarios son '.implode(', ', $rolesOrPermissions);
         }
 
         $exception = new static(403, $message, null, []);
@@ -57,12 +57,12 @@ class UnauthorizedException extends HttpException
     {
         $class = get_class($user);
 
-        return new static(403, "Authorizable class `{$class}` must use Spatie\Permission\Traits\HasRoles trait.", null, []);
+        return new static(403, "La clase Authorizable `{$class}` debe usar el trait Spatie\Permission\Traits\HasRoles.", null, []);
     }
 
     public static function notLoggedIn(): self
     {
-        return new static(403, 'User is not logged in.', null, []);
+        return new static(403, 'El usuario no ha iniciado sesión.', null, []);
     }
 
     public function getRequiredRoles(): array

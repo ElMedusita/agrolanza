@@ -8,7 +8,7 @@ class PermissionDoesNotExist extends InvalidArgumentException
 {
     public static function create(string $permissionName, ?string $guardName)
     {
-        return new static("There is no permission named `{$permissionName}` for guard `{$guardName}`.");
+        return new static("No existe un permiso llamado `{$permissionName}` para el guard `{$guardName}`.");
     }
 
     /**
@@ -17,6 +17,6 @@ class PermissionDoesNotExist extends InvalidArgumentException
      */
     public static function withId($permissionId, ?string $guardName)
     {
-        return new static("There is no [permission] with ID `{$permissionId}` for guard `{$guardName}`.");
+        return new static("No existe un permiso con el ID `{$permissionId}` para el guard `{$guardName}`.");
     }
 }

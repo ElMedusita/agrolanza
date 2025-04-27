@@ -5,7 +5,7 @@
 @section('content')
 <pre></pre>
 <div style="text-align: center">
-    <h1>Bienvenido, {{ auth()->user()->name }}!</h1>
+    <h1>¡Te damos la bienvenida, {{ auth()->user()->name }}!</h1>
     <p>Sistema centralizado de Agrolanza S.L.</p>
 </div>
 
