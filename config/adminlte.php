@@ -354,11 +354,11 @@ return [
             'url' => '/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
-        [
+/*         [
             'text' => 'change_password',
             'url' => '/profile/password',
             'icon' => 'fas fa-fw fa-lock',
-        ],
+        ], */
     ],
 
 
