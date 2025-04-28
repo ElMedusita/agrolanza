@@ -48,7 +48,7 @@
         <input type="hidden" name="id" value="{{ $servicio->id }}" />
         
         <div class="mb-3">
-            <label for="id_parcela" class="form-label">Parcela</label>
+            <label for="id_parcela" class="form-label">Parcela *</label>
             <select {{ $disabled }} name="id_parcela" id="id_parcela" class="form-select form-select-sm">
                 <option value="">Selecciona una parcela...</option>
                 @foreach ($parcelas as $parcela)
@@ -105,7 +105,7 @@
         <br>
 
         <div class="mb-3">
-            <label for="tipo_servicio" class="form-label">Tipo de servicio</label>
+            <label for="tipo_servicio" class="form-label">Tipo de servicio *</label>
             <select {{ $disabled }}  name="tipo_servicio" id="tipo_servicio" class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option value="">Selecciona un tipo...</option>
                 @foreach ($TIPOS_SERVICIO as $clave_tipo_servicio => $texto_tipo_servicio)
@@ -122,37 +122,37 @@
         </div>
 
         <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
+            <label for="descripcion" class="form-label">Descripción *</label>
             <input {{ $disabled }} type="text" name="descripcion" class="form-control" id="descripcion" value="{{ old('descripcion',$servicio->descripcion)}}" placeholder="Descripción">
             @error('descripcion') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-3">
-            <label for="fecha_servicio" class="form-label">Fecha servicio</label>
+            <label for="fecha_servicio" class="form-label">Fecha servicio *</label>
             <input {{ $disabled }}  type="date" name="fecha_servicio" class="form-control" id="fecha_servicio" value="{{ old('fecha_servicio',$servicio->fecha_servicio)}}" placeholder="Fecha servicio">
             @error('fecha_servicio') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-3">
-            <label for="hora_servicio" class="form-label">Hora servicio</label>
+            <label for="hora_servicio" class="form-label">Hora servicio *</label>
             <input {{ $disabled }} type="time" name="hora_servicio" class="form-control" id="hora_servicio" value="{{ old('hora_servicio', $servicio->hora_servicio) }}">
             @error('hora_servicio') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-3">
-            <label for="duracion" class="form-label">Duración (en horas)</label>
+            <label for="duracion" class="form-label">Duración (en horas) *</label>
             <input {{ $disabled }} type="number" step="1" min="1" max="8" name="duracion" class="form-control" id="duracion" value="{{ old('duracion', $servicio->duracion ?? '') }}" placeholder="Duración">
             @error('duracion') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-3">
-            <label for="presupuesto" class="form-label">Presupuesto</label>
+            <label for="presupuesto" class="form-label">Presupuesto *</label>
             <input {{ $disabled }} type="number" step="0.01" name="presupuesto" class="form-control" id="presupuesto" value="{{ old('presupuesto', $servicio->presupuesto ?? '') }}" placeholder="Presupuesto">
             @error('presupuesto') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-3">
-            <label for="metodo_pago" class="form-label">Método de pago</label>
+            <label for="metodo_pago" class="form-label">Método de pago *</label>
             <select {{ $disabled }}  name="metodo_pago" id="metodo_pago" class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option value="">Selecciona un método...</option>
                 @foreach ($METODOS_PAGO as $clave_metodo_pago => $texto_metodo_pago)
@@ -169,7 +169,7 @@
         </div>
 
         <div class="mb-3">
-            <label for="estado" class="form-label">Estado de pago</label>
+            <label for="estado" class="form-label">Estado de pago *</label>
             <select {{ $disabled }}  name="estado" id="estado" class="form-select form-select-sm" aria-label=".form-select-sm example">
                 <option value="">Selecciona un estado...</option>
                 @foreach ($ESTADOS as $clave_estado => $texto_estado)

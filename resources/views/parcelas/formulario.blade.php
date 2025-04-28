@@ -41,7 +41,7 @@
         <input type="hidden" name="id" value="{{ $parcela->id }}" />
         
         <div class="mb-3">
-            <label for="id_cliente" class="form-label">Titular de la parcela</label>
+            <label for="id_cliente" class="form-label">Titular de la parcela *</label>
             <select {{ $disabled }} name="id_cliente" id="id_cliente" class="form-select form-select-sm">
                 <option value="">Selecciona un cliente...</option>
                 @foreach ($clientes as $cliente)
@@ -55,25 +55,25 @@
         </div>
 
         <div class="mb-3">
-            <label for="referencia_catastral" class="form-label">Referencia catastral</label>
+            <label for="referencia_catastral" class="form-label">Referencia catastral *</label>
             <input {{ $disabled }} type="text" name="referencia_catastral" class="form-control" id="referencia_catastral" value="{{ old('referencia_catastral',$parcela->referencia_catastral)}}" placeholder="Referencia catastral">
             @error('referencia_catastral') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-3">
-            <label for="superficie" class="form-label">Superficie</label>
+            <label for="superficie" class="form-label">Superficie *</label>
             <input {{ $disabled }} type="number" step="1" min="1" name="superficie" class="form-control" id="superficie" value="{{ old('superficie',$parcela->superficie)}}" placeholder="Superficie">
             @error('superficie') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-3">
-            <label for="latitud" class="form-label">Latitud</label>
+            <label for="latitud" class="form-label">Latitud *</label>
             <input {{ $disabled }} type="number" step="0.000001" name="latitud" class="form-control" id="latitud" value="{{ old('latitud', $parcela->latitud ?? '') }}" placeholder="Latitud">
             @error('latitud') <p style="color: red;">{{ $message }}</p> @enderror
         </div>
 
         <div class="mb-3">
-            <label for="longitud" class="form-label">Longitud</label>
+            <label for="longitud" class="form-label">Longitud *</label>
             <input {{ $disabled }} type="number" step="0.000001" name="longitud" class="form-control" id="longitud" value="{{ old('longitud', $parcela->longitud ?? '') }}" placeholder="Longitud">
             @error('longitud') <p style="color: red;">{{ $message }}</p> @enderror
         </div>

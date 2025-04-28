@@ -69,6 +69,7 @@ class UserController extends Controller
             'codigo_postal' => 'required|regex:/^\d{5}$/',
             'iban' => 'required|regex:/^ES[0-9]{22}$/',
             'fecha_nacimiento' => 'required|date|before:'.now()->subYears(18)->toDateString(),
+            'fecha_comienzo' => 'required|date',
             'password' => empty($request->id) ? 'required' : (!empty($request->password) ? 'string' : ''),
             'confirm_password' => !empty($request->password) ? 'required|same:password' : '',
         ];
@@ -112,6 +113,9 @@ class UserController extends Controller
             'fecha_nacimiento.date'     => 'La fecha de nacimiento debe ser una fecha válida.',
             'fecha_nacimiento.before'   => 'La fecha de nacimiento debe ser anterior a 18 años atrás.',
             
+            'fecha_comienzo.required' => 'La fecha de comienzo es obligatoria.',
+            'fecha_comienzo.date'     => 'La fecha de comienzo debe ser una fecha válida.',
+
             'password.required'        => 'La contraseña es obligatoria para nuevos usuarios.',
             'password.string'          => 'La contraseña debe ser una cadena de texto.',
             
