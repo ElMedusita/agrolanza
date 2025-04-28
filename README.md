@@ -11,6 +11,10 @@
 
 Agrolanza es un sistema centralizado para la gestión de servicios agrícolas, diseñado para facilitar la administración de clientes, parcelas, maquinarias, productos fitosanitarios y servicios relacionados.
 
+## Memoria del proyecto
+
+https://drive.google.com/file/d/1olulmNuXHtGh7wRpKYRfwzFaM8dnqaHJ/view?usp=sharing
+
 ## Requisitos del Sistema
 
 - PHP >= 8.1
